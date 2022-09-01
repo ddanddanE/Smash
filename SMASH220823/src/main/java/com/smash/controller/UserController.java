@@ -85,5 +85,6 @@ public class UserController {
 		
 		//test
 		//asdf
+		//연습용
 	}
 }
