@@ -84,5 +84,6 @@ public class UserController {
 		return "/user/success";
 		
 		//test
+		//gittest
 	}
 }
