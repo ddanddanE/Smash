@@ -1,0 +1,70 @@
+<form action="/user/make" method="post">
+		아이디:
+		<input type="text" class="" id="id" maxlength="" name="User_Id"> <button>중복확인</button>
+		<br>
+		비밀번호:
+		<input type="password" class="" id="pw" maxlength="" name="User_Pw" onkeyup="passneed()"><a id="chkPW"></a>
+		<br>
+		비밀번호 확인:
+		<input type="password" class="" id="pwconf" maxlength="" onkeyup="passchk()"><a class="" id="alertPW"></a>
+		<br>
+		이름:
+		<input type="text" class="" id="name" maxlength="" name="User_Name">
+		<br>
+		주민번호:
+		<input type="text" class="firResi" id="firResi" maxlength="6" name="" onkeyup="resi()">
+		-
+		<input type="password" class="secResi" id="secResi" maxlength="7" name="" onkeyup="resi()">
+		<br>
+		<input type="text" class="resiNum" id="resiNum"  name="User_ResiNum"><!-- hidden -->
+		<br>
+		이메일:
+		<input type="text" class="" id="firEmail">@<input type="text" class="" id="secEmail">
+		<select class="" id="selectEmail">
+			<option value="직접입력">직접입력</option>
+			<option value="naver.com">네이버</option>
+			<option value="daum.net">다음</option>
+			<option value="gmail.com">구글</option>
+		</select>
+		<br>
+		전화번호:
+		<input type="text" class="" id="phoneNum" placeholder="-을 빼고 입력해주세요" maxlength="11" name="User_PhoneNum">
+		<br>
+		생년월일:
+		<input type="date" id="birth" name="User_BirthDay">
+		<br>
+		성별:
+		<select class="" id="gender" name="User_Gender">
+			<option value="M">남자</option>
+			<option value="F">여자</option>
+		</select>
+		<br>
+		주소:
+		<br>
+		<input type="text" id="sample6_postcode" placeholder="우편번호">
+		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text" id="sample6_address" placeholder="주소"><br>
+		<input type="text" id="sample6_detailAddress" placeholder="상세주소" onkeyup="adr()">
+		<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+		
+		<input type="text" class="" id="Address" name="User_Address" readonly="readonly"><!-- hidden -->
+		<br>
+		 
+		<input type="checkbox" class="" id="checkAdr" checked="checked">고정 운동장 사용
+		<br>
+		고정 운동장:
+		<br>
+		<input type="text" id="sample7_postcode" placeholder="우편번호">
+		<input type="button" onclick="sample7_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text" id="sample7_address" placeholder="주소"><br>
+		<input type="text" id="sample7_detailAddress" placeholder="상세주소" onkeyup="sportadr()">
+		<input type="text" id="sample7_extraAddress" placeholder="참고항목">
+		
+		<input type="text" class="" id="Sport_Address" name="User_Sport_Address" readonly="readonly"><!-- hidden -->
+		<br>
+		<input type="hidden" value="${resultagr}">
+		<!-- hidden -->
+		<br>
+		<input type="submit" value="회원가입" onclick="allmake()">
+		<input type="reset" value="취소">
+	</form>

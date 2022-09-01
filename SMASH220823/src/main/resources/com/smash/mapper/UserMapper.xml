@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.smash.mapper.UserMapper">
+	<insert id="insert">
+		insert into user_table(User_Id,User_Pw,User_Name,User_ResiNum,User_Email,User_PhoneNum,User_BirthDay,
+		User_Gender,User_Address,User_Sport_Address,User_Agree) values(#{user_id},#{user_pw},#{user_name},
+		#{user_resinum},#{user_email},#{user_phonenum},#{user_birthday},#{user_gender},#{user_address},
+		#{user_sport_address},#{user_agree})
+	</insert>
+	
+	<insert id="insert_no">
+		insert into user_table(User_Id,User_Pw,User_Name,User_ResiNum,User_Email,User_PhoneNum,User_BirthDay,
+		User_Gender,User_Address,User_Agree) values(#{user_id},#{user_pw},#{user_name},
+		#{user_resinum},#{user_email},#{user_phonenum},#{user_birthday},#{user_gender},#{user_address},
+		#{user_agree})
+	</insert>
+	<select id="login" resultType="com.smash.VO.user.UserVO">
+		select * from user_table where
+		user_id like #{user_id} and user_pw like #{user_pw}
+	</select>
+</mapper>
