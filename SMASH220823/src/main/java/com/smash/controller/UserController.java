@@ -30,13 +30,13 @@ public class UserController {
 		return "/user/login";
 	}
 
-	// 硫붿씤�럹�씠吏��뿉�꽌 濡쒓렇�씤 愿��젴 jsp�뿴�룄濡� �븯�뒗 �럹�씠吏�
+	// 筌롫뗄�뵥占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 嚥≪뮄�젃占쎌뵥 �꽴占쏙옙�졃 jsp占쎈였占쎈즲嚥∽옙 占쎈릭占쎈뮉 占쎈읂占쎌뵠筌욑옙
 	@PostMapping("/login")
 	public String loginpost() {
 		return "/user/login";
 	}
 
-	// 濡쒓렇�씤 �럹�씠吏��뿉�꽌 �븘�씠�뵒 鍮꾨쾲 移섍퀬 留욎쑝硫� 硫붿씤 �븘�땲硫� �떎�떆 �뿬湲� �럹�씠吏�
+	// 嚥≪뮄�젃占쎌뵥 占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎈툡占쎌뵠占쎈탵 �뜮袁⑥쓰 燁살꼵�� 筌띿쉸�몵筌롳옙 筌롫뗄�뵥 占쎈툡占쎈빍筌롳옙 占쎈뼄占쎈뻻 占쎈연疫뀐옙 占쎈읂占쎌뵠筌욑옙
 	@PostMapping("/logincheck")
 	public String logincheck(HttpSession session, @RequestParam("User_Id") String User_Id, @RequestParam("User_Pw") String User_Pw) {
 		
@@ -49,13 +49,13 @@ public class UserController {
 		return "/user/test";
 	}
 
-	// 硫붿씤�럹�씠吏��뿉�꽌 �쉶�썝媛��엯�븯硫� �젙蹂댁젣怨� �룞�쓽
+	// 筌롫뗄�뵥占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎌돳占쎌뜚揶쏉옙占쎌뿯占쎈릭筌롳옙 占쎌젟癰귣똻�젫�⑨옙 占쎈짗占쎌벥
 	@GetMapping("/signup/agree")
 	public String agree() {
 		return "/user/agree";
 	}
 
-	// �젙蹂댁젣怨� �룞�쓽�뿉�꽌 �씤�쟻�궗�빆�엯�젰
+	// 占쎌젟癰귣똻�젫�⑨옙 占쎈짗占쎌벥占쎈퓠占쎄퐣 占쎌뵥占쎌읅占쎄텢占쎈퉮占쎌뿯占쎌젾
 	@PostMapping("/signup")
 	public String signup(Model m, HttpServletRequest request) {
 		String resultagr = request.getParameter("resultagr");
@@ -84,5 +84,6 @@ public class UserController {
 		return "/user/success";
 		
 		//test
+		//asdf
 	}
 }
