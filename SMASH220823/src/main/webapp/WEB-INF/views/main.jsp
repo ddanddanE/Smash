@@ -6,10 +6,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SMASH MainPage</title>
+<style>
+div{
+float: right;
+border:  3px solid black;
+}
+</style>
 </head>
 <body>
-${user.user_id}
+<div><c:import url="/WEB-INF/views/include/login.jsp"/></div>
+<H1>MACHING</H1>
+
+result<br>
+<form action="/result/result" method="get">
+<input type="hidden" name="NOTICE_MSG_NO"  value="4"/>
+<input type="hidden" name="id"  value="${id}"/>		
+<input type="submit" value="end">
+</form>
+<br>
+mypage<br>
+<form action="/user/myPage" method="get">
+<input type="hidden" name="id"  value="${id}"/>	
+<input type="submit" value="end">
+</form>
+
 	<form action="/user/login" method="post">
 		<input type="submit" value="로그인">
 	</form>
