@@ -4,12 +4,21 @@
 <mapper namespace="com.smash.mapper.RateMapper">
 
 	<insert id="rate_insert">
-		insert into rate_table(userName,rival,rating,content) values(#{userName},#{rival},#{rating},#{content})
+		insert into rate_table(userName,rival,rating,content) values(#{rival},#{userName},#{rating},#{content})
 	</insert>
 	
 	<insert id="rate_insert1">
+		insert into rate_table(userName,rival,rating) values(#{rival},#{userName},#{rating})
+	</insert>
+	
+	<insert id="rate_insert2">
 		insert into rate_table(userName,rival,rating) values(#{userName},#{rival},#{rating})
 	</insert>
+	
+	<insert id="rate_insert3">
+		insert into rate_table(userName,rival,rating,content) values(#{userName},#{rival},#{rating},#{content})
+	</insert>
+	
 	
 	<select id="rate_select" resultType="com.smash.VO.rate.RateBVO">
 		select userName,rival,rating from rate_table where rival=#{rival}

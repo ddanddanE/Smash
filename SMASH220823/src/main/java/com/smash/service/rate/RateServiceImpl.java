@@ -34,6 +34,16 @@ public class RateServiceImpl implements RateService{
 	}
 	
 	@Override
+	public void rate_insert2(RateBVO bo) {
+		ra_dao.rate_insert2(bo);
+	}
+	
+	@Override
+	public void rate_insert3(RateBVO bo) {
+		ra_dao.rate_insert3(bo);
+	}
+	
+	@Override
 	public List<RateBVO> rate_select(RateBVO bo) {
 		return ra_dao.rate_select(bo);
 	}

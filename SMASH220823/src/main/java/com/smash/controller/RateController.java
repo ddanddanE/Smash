@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smash.VO.match.matchBVO;
 import com.smash.VO.match.noticeBVO;
@@ -50,18 +51,26 @@ public class RateController {
 	}
 
 	@PostMapping("/rate_success")
+	@ResponseBody
 	public String good(RateBVO bo, Model m, @RequestParam("rival") String rival, @RequestParam("id") String id,
 			noticeBVO no) {
 
 		double total = 0;
 		int cnt = 0;
 		double avg = 0;
-
+		
+		
 		/*---------------------------콘텐츠 입력or생략--------------------------------*/
-		if (bo.getChe() == null) {
+		if (bo.getChe() == null & id.equals(rival)) {
 			ra_service.rate_insert1(bo);
-		} else {
+		}
+		else if(bo.getChe() == null & !id.equals(rival)){
+			ra_service.rate_insert2(bo);
+		}
+		else if(bo.getChe() != null & id.equals(rival)){
 			ra_service.rate_insert(bo);
+		}else {
+			ra_service.rate_insert3(bo);
 		}
 
 		/*---------------------------평점 평균--------------------------------*/
@@ -85,7 +94,7 @@ public class RateController {
 			ra_service.rate_update(no);
 		}
 
-		return "rate/rate_success";
+		return "suc";
 	}
 
 }

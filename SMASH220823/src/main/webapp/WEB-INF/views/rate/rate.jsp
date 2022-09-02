@@ -37,7 +37,7 @@
 	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-.button{
+.button5{
 	width: 140px;
 	height: 45px;
 	font-family: 'Roboto', sans-serif;
@@ -57,13 +57,13 @@
 	margin-left: 80px;
 }
 
-.button:hover {
+.button5:hover {
 	background-color: #008000;
 	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
 	color: #fff;
 	transform: translateY(-7px);
 }
-#span{
+#span3{
 	margin-left: 80px;
 }
 textarea {
@@ -113,11 +113,11 @@ textarea {
 				id="rate4"><label for="rate4">★</label> <input type="radio"
 				name="rating" value="1" id="rate5"><label for="rate5">★</label>
 		</fieldset>
-		<br><span id="span">별점을 선택해주세요</span>
+		<br><span id="span3">별점을 선택해주세요</span>
 		<br> 코멘트:
 		<textarea id="content" name="content" placeholder="체크 시  입력가능" disabled></textarea>
 		<input type="checkbox" id="che" name="che" onclick="check()" /> </br>
-		 <input type="submit" value="보내기" class="button" />
+		 <input type="submit" value="보내기" class="button5" />
 	</form>
 
 </body>

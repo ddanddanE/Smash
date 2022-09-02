@@ -11,6 +11,10 @@ public interface RateDAO {
 	public void rate_insert(RateBVO bo);
 
 	public void rate_insert1(RateBVO bo);
+	
+	public void rate_insert2(RateBVO bo);
+	
+	public void rate_insert3(RateBVO bo);
 
 	public List<RateBVO> rate_select(RateBVO bo);
 

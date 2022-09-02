@@ -30,6 +30,16 @@ public class RateDAOImpl implements RateDAO{
 		ra_mapper.rate_insert1(bo);
 	}
 	@Override
+	public void rate_insert2(RateBVO bo) {
+		ra_mapper.rate_insert2(bo);
+	}
+	
+	@Override
+	public void rate_insert3(RateBVO bo) {
+		ra_mapper.rate_insert3(bo);
+	}
+	
+	@Override
 	public List<RateBVO> rate_select(RateBVO bo) {
 		return ra_mapper.rate_select(bo);
 	}

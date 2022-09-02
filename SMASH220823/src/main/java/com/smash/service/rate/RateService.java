@@ -10,6 +10,10 @@ public interface RateService {
 	public void rate_insert(RateBVO bo);/* 평점insert */
 
 	public void rate_insert1(RateBVO bo);/* 평점insert(코멘트 null값) */
+	
+	public void rate_insert2(RateBVO bo);
+	
+	public void rate_insert3(RateBVO bo);
 
 	public List<RateBVO> rate_select(RateBVO bo);/* 상대 정보(평점) 출력 */
 
