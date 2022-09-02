@@ -38,7 +38,7 @@
 <body>
 
 ${user.user_id }님 환영합니다<br>
-<input type="button" class="button" value="마이페이지" onclick="window.open('/user/myPage?id=${user.user_id}','ppp','width=800,height=800,left=500,top=200,resizeable,scrollbars')"/>
+<input type="button" class="button" value="마이페이지" onclick="window.open('/user/myPage?user.user_id=${user.user_id}','ppp','width=800,height=800,left=500,top=200,resizeable,scrollbars')"/>
 <button class="button" id="button" onclick="location.href='/log'">로그아웃</button>
 </body>
 </html>
