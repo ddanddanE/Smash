@@ -51,7 +51,6 @@ font-size: 2em;
 <body>
 
 	<div class="a">
-	<img src="/resources/upload/${img}" width="200px" height="200px" />
 	<br> ${rival}의 평점은 <span>★</span>${avg }
 	<br>
 	</div>

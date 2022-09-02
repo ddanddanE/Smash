@@ -100,7 +100,7 @@ textarea {
 	<form action="/rate/rate_success" method="post" class="mb-3" id="myform"
 		name="myform">
 		<input type="hidden" value="${param.NOTICE_MSG_NO}" name="NOTICE_MSG_NO"/>
-		<input type="hidden" value="${param.id}" name="id" /> 
+		<input type="hidden" value="${id}" name="id" /> 
 		<input type="hidden" value="${rivalName}" name="rival" /> 
 		<input
 			type="hidden" value="${userName}" name="userName" />

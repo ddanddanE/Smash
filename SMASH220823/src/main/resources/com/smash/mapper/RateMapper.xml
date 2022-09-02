@@ -3,11 +3,35 @@
 
 <mapper namespace="com.smash.mapper.RateMapper">
 
+	<insert id="rate_insert">
+		insert into rate_table(userName,rival,rating,content) values(#{userName},#{rival},#{rating},#{content})
+	</insert>
+	
+	<insert id="rate_insert1">
+		insert into rate_table(userName,rival,rating) values(#{userName},#{rival},#{rating})
+	</insert>
+	
+	<select id="rate_select" resultType="com.smash.VO.rate.RateBVO">
+		select userName,rival,rating from rate_table where rival=#{rival}
+	</select>
+	
 	
 	
 	<select id="rate_select2" resultType="com.smash.VO.match.noticeBVO">
 		select NOTICE_MSG_USER,NOTICE_MSG_RIVAL from notice_msg_table where NOTICE_MSG_NO=#{NOTICE_MSG_NO}
 	</select>
 	
+	<select id="rate_select3" resultType="com.smash.VO.match.noticeBVO">
+		select NOTICE_MSG_USER,NOTICE_MSG_RIVAL from notice_msg_table where NOTICE_MSG_NO=#{NOTICE_MSG_NO}
+	</select>
+	
+	
+	<update id="rate_update">
+		update notice_msg_table set NOTICE_MSG_URATE = 1 where  NOTICE_MSG_NO=#{NOTICE_MSG_NO}
+	</update>
+	
+	<update id="rate_update2">
+		update notice_msg_table set NOTICE_MSG_RRATE = 1 where  NOTICE_MSG_NO=#{NOTICE_MSG_NO}
+	</update>
 	
 </mapper>
