@@ -18,9 +18,8 @@ border:  3px solid black;
 <H1>MACHING</H1>
 
 result<br>
-<form action="/result/result" method="get">
+<form action="/match/result" method="get">
 <input type="hidden" name="NOTICE_MSG_NO"  value="4"/>
-<input type="hidden" name="id"  value="${id}"/>		
 <input type="submit" value="end">
 </form>
 <br>

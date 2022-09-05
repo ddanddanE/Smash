@@ -29,9 +29,9 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequiredArgsConstructor
 @Log4j
-public class ResultController {
+public class MatchController {
 
-	/*--------------------!삭제예정!---------------------*/
+
 	private final MatchService match_mapper;
 	
 	private final UserService uService;
@@ -40,7 +40,7 @@ public class ResultController {
 	
 	
 
-	/*----------------로그인 id가지고 mypage 이동------------------1---*/
+	/*----------------로그인 id가지고 mypage 이동  user controller로??------------------1---*/
 	@GetMapping("/user/myPage")
 	public String myPage(Model m,noticeBVO no,@RequestParam("user.user_id")String id,HttpSession session) {
 		
@@ -62,4 +62,16 @@ public class ResultController {
 		return "user/myPage";
 	}
 
+	/*		경기 후 결과 선택			*/
+	@GetMapping("/match/result")
+	public String del(Model m,noticeBVO no) {
+
+		no = match_mapper.select_match(no);
+		
+		m.addAttribute("NOTICE_MSG_USER", no.getNOTICE_MSG_USER());
+		m.addAttribute("NOTICE_MSG_RIVAL", no.getNOTICE_MSG_RIVAL());
+		m.addAttribute("NOTICE_MSG_NO", no.getNOTICE_MSG_NO());
+		return "match/result";
+	}
+	
 }

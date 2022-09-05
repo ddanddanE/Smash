@@ -253,7 +253,7 @@ img {
 						<td><fmt:formatDate value="${bo.NOTICE_MSG_TIME }"
 								pattern="yy-MM-dd" /></td>
 						<td><c:out value="${bo.NOTICE_MSG_STATUS}" /></td>
-						<td><c:if test="${bo.NOTICE_MSG_URATE==0 }">
+						<td><c:if test="${bo.NOTICE_MSG_URATE==0 &&  bo.NOTICE_MSG_STATUS.equals('완료') }">
 
 								<button class="button" type="button"
 									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">평점주기</button>
@@ -276,13 +276,13 @@ img {
 						<td><fmt:formatDate value="${bb.NOTICE_MSG_TIME }"
 								pattern="yy-MM-dd" /></td>
 						<td><c:out value="${bb.NOTICE_MSG_STATUS}" /></td>
-						<td><c:if test="${bb.NOTICE_MSG_RRATE==0 }">
+						<td><c:if test="${bb.NOTICE_MSG_RRATE==0 && bb.NOTICE_MSG_STATUS.equals('완료') }">
 								
 								<button class="button" type="button"
 									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">평점주기</button>
 								<button type="button" class="button3"
 									onclick="popupReport1(2,'user3')">신고하기</button>
-							</c:if> <c:if test="${bb.NOTICE_MSG_RRATE==1 }">
+							</c:if> <c:if test="${bb.NOTICE_MSG_RRATE==1}">
 								<input type="button" class="button2" value="평점주기"
 									disabled="disabled" />
 								<button type="button" class="button3"
@@ -371,7 +371,7 @@ img {
 			$.post("/rate/rate_success", $("#myform").serialize(), function(data) {
 
 				if (data == "suc") {
-					alert("완료");
+					alert("성공");
 					$('#rate').modal('hide');
 					location.reload();
 				} else {

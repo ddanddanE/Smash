@@ -21,7 +21,7 @@ public interface MatchMapper {
 	public List<noticeBVO> select_notice1(UserVO no);
 	public List<noticeBVO> select_notice2(UserVO no);
 	
-	
+	public noticeBVO select_match(noticeBVO mo);
 
 	
 }

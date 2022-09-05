@@ -15,7 +15,7 @@ public interface MatchService {
 	
 	public List<noticeBVO> select_notice2(UserVO no);/*로그인=참가자인 경기 내역 출력*/
 	
-	
+	public noticeBVO select_match(noticeBVO mo);
 
 
 }

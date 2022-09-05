@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.smash.VO.match.matchBVO;
 import com.smash.VO.match.noticeBVO;
 import com.smash.VO.rate.RateBVO;
 import com.smash.VO.user.UserVO;

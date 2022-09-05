@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,9 +37,16 @@
 </style>
 </head>
 <body>
-
+<c:choose>
+<c:when test="${ user.user_id == null }">
+<button class="button" id="button" onclick="location.href='/user/login'">로그인</button>
+</c:when>
+<c:otherwise>
 ${user.user_id }님 환영합니다<br>
 <input type="button" class="button" value="마이페이지" onclick="window.open('/user/myPage?user.user_id=${user.user_id}','ppp','width=800,height=800,left=500,top=200,resizeable,scrollbars')"/>
 <button class="button" id="button" onclick="location.href='/user/login'">로그아웃</button>
+</c:otherwise>
+</c:choose>
+
 </body>
 </html>

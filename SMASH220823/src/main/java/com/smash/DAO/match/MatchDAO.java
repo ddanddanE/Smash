@@ -16,7 +16,7 @@ public interface MatchDAO {
 	
 	public List<noticeBVO> select_notice2(UserVO no);
 	
-	
+	public noticeBVO select_match(noticeBVO mo);
 	
 
 }

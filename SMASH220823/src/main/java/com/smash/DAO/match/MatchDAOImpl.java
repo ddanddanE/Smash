@@ -20,7 +20,10 @@ public class MatchDAOImpl implements MatchDAO {
 	
 	
 	
-	
+	@Override
+	public noticeBVO select_match(noticeBVO mo) {
+		return match_mapper.select_match(mo);	
+	}
 
 
 

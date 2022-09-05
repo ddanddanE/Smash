@@ -22,7 +22,12 @@ public class MatchServiceImpl implements MatchService {
 	private final MatchDAO match_dao;
 	
 	
-	
+	@Override
+	public noticeBVO select_match(noticeBVO mo) {
+		return match_dao.select_match(mo);
+		
+		
+	}
 
 
 
