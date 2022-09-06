@@ -14,6 +14,14 @@
 	<form action="/main">
 		<input type="submit" value="메인으로">
 	</form>
+	
+	<form action="/user/update" method="post">
+		<input type="submit"value="수정">
+	</form>
+	
+	<form action="/user/delete" method="post">
+		<input type="submit" value="삭제">
+	</form>
 </body>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </html>

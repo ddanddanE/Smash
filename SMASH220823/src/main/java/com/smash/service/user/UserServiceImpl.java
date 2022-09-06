@@ -26,8 +26,39 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserVO login(UserVO vo) {
-		System.out.println("서비스!!!!!!!"+vo.getUser_id());
 		return uDao.login(vo);
 	}
+
+	@Override
+	public UserVO findid(UserVO uvo) {
+		return uDao.findid(uvo);
+	}
+
+	@Override
+	public UserVO findpw(UserVO uvo) {
+		System.out.println(uvo.getUser_id());
+		return uDao.findpw(uvo);
+	}
+
+	@Override
+	public UserVO pwChk(UserVO uvo) {
+		return uDao.pwChk(uvo);
+	}
+
+	@Override
+	public void update(UserVO uvo) {
+		uDao.update(uvo);
+	}
+
+	@Override
+	public UserVO idChk(UserVO uvo) {
+		return uDao.idChk(uvo);
+	}
+
+	@Override
+	public void delete(UserVO uvo) {
+		uDao.delete(uvo);
+	}
+
 
 }

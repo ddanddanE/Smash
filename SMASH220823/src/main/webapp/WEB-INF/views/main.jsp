@@ -10,8 +10,19 @@
 </head>
 <body>
 ${user.user_id}
-	<form action="/user/login" method="post">
-		<input type="submit" value="로그인">
-	</form>
+	
+	<c:choose>
+		<c:when test="${user.user_id == null}">
+			<form action="/user/login" method="post">
+				<input type="submit" value="로그인">
+			</form>
+		</c:when>		
+		<c:when test="${user.user_id != null}">
+			<form action="/user/logout" method="post">
+				<input type="submit" value="로그아웃">
+			</form>
+		</c:when>
+	</c:choose>
+	
 </body>
 </html>
