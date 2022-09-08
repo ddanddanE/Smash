@@ -1,4 +1,4 @@
-package com.smash.controller.board;
+package com.smash.controller;
 
 import javax.inject.Inject;
 
