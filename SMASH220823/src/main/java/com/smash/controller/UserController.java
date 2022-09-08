@@ -78,18 +78,53 @@ public class UserController {
 	}
 	
 	//나의 신청내역
-	@GetMapping("matchdetail")
-		public void matchdetail() {
+	@GetMapping("/matchdetail")
+	public String matchdetail2(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
 			
-		}
-	
-	//신청받은 내역
-	@GetMapping("match_receive")
-	public void match_receive() {
+			uo = (UserVO)session.getAttribute("user");
+			
+			
+			session.setAttribute("user", uo);
+			
+			List<noticeBVO> lo = match_service.select_notice1(uo);
+			
+			m.addAttribute("lo", lo);
+
+			List<noticeBVO> lo2 = match_service.select_notice2(uo);
 		
+			m.addAttribute("lo2", lo2);
+			
+		
+			return "/user/matchdetail";
 	}
 	
+	//신청받은 내역
+	@GetMapping("/match_receive")
+	public String match_receive2(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
+			
+			uo = (UserVO)session.getAttribute("user");
+			
+			
+			session.setAttribute("user", uo);
+			
+			List<noticeBVO> lo = match_service.select_notice1(uo);
+			
+			m.addAttribute("lo", lo);
 
+			List<noticeBVO> lo2 = match_service.select_notice2(uo);
+		
+			m.addAttribute("lo2", lo2);
+			
+		
+			return "/user/match_receive";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

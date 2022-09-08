@@ -27,44 +27,64 @@
         <div class="col-9">
           <h2 class="mb-3"><i class="bi bi-list-stars"></i> 회원정보</h2>
           
+          
         <form action="#">
             <div class="form-group row">
-              <label class="col-md-2 col-form-label form-control-label text-muted">아이디</label>
+              <label class="col-md-2 col-form-label form-control-label text-muted">이름</label>
               <div class="col-md-5">
-                <input class="form-control" type="text" value="메롱" name="id">
+                <input class="form-control" type="text" value=${user.user_name} id="name"  name="user_name">
               </div>
             </div>
  
           <div class="form-group row">
-            <label class="col-md-2 col-form-label form-control-label text-muted">비밀번호</label>
-              <div class="col-md-5">
-                <input class="form-control" type="password" value="123"name="pw">
+            <label class="col-md-2 col-form-label form-control-label text-muted">이메일</label>
+              <div class="col-md-3">
+                <input class="form-control" type="text" id="firEmail" value=${firEmail}>
               </div>
-          </div>
-
-          <div class="form-group row">
-            <label class="col-md-2 col-form-label form-control-label text-muted">주소</label>
-              <div class="col-md-5">
-                <input class="form-control" type="text" value="어디일까요?" name="add">
+              <div class="col-md-0">
+                @
+              </div>
+              <div class="col-md-3">
+                <input class="form-control" type="text"  id="secEmail" value=${secEmail}>
+              </div>
+              <div class="col-md-0">
+                <select class="form-control" id="selectEmail">
+					<option value="직접입력">직접입력</option>
+					<option value="naver.com">네이버</option>
+					<option value="daum.net">다음</option>
+					<option value="gmail.com">구글</option>
+				</select>
               </div>
           </div>
 
           <div class="form-group row">
             <label class="col-md-2 col-form-label form-control-label text-muted">전화번호</label>
               <div class="col-md-5">
-                <input class="form-control" type="number" value="01012341234" name="phone">
+                <input class="form-control" type="text" id="phoneNum" placeholder="-를 빼고 입력해주세요" maxlength="11" name="user_phonenum" value=${user.user_phonenum}>
               </div>
           </div>
 
           <div class="form-group row">
-            <label class="col-md-2 col-form-label form-control-label text-muted">필요 시 더 추가하세용 ~</label>
+            <label class="col-md-2 col-form-label form-control-label text-muted">생년월일</label>
               <div class="col-md-5">
-                <input class="form-control" type="text" value="필요 시 더 추가하세용" name="phone">
+                <input class="form-control" type="date" id="birth" name="user_birthday" value=${user.user_birthday}>
               </div>
           </div>
 
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label form-control-label text-muted">주소</label>
+             
+              <div class="col-md-5">
+               	<input class="form-control" type="text" id="sample6_postcode" placeholder="우편번호" readonly="readonly" value="${adr4}">
+	          </div>
+	          
+	           <div class="col-md-0">
+               	<input class="form-control" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" >	
+	          </div>
+          </div>
 
-          <button type="submit" class="btn btn-outline-primary" onclick="">회원정보수정</button>
+
+          <button type="submit" class="btn btn-outline-primary" onclick="">수정</button>
           <button type="reset" class="btn btn-outline-primary">취소</button>
       </form>
  

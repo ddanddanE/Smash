@@ -14,116 +14,122 @@
             <div class="p-3">ID입니다</div>
           </div>
 
-           <div class="list-group">
-            <a href="/user/memberinfo" class="list-group-item list-group-item-action ">회원정보</a>
-            <a href="/user/matchinglist" class="list-group-item list-group-item-action">나의 매칭목록</a>
-            <a href="/user/matchdetail.html" class="list-group-item list-group-item-action">나의 신청내역</a>
-             <a href="/user/match_receive" class="list-group-item list-group-item-action active">신청받은내역</a>
-            <a href="/report/reportlist" class="list-group-item list-group-item-action">신고받은 내용</a>
+          <div class="list-group">
+            <a href="memberinfo.html" class="list-group-item list-group-item-action ">회원정보</a>
+            <a href="matchinglist.html" class="list-group-item list-group-item-action ">나의 매칭목록</a>
+            <a href="matchdetail.html" class="list-group-item list-group-item-action ">나의 신청내역</a>
+             <a href="match_receive" class="list-group-item list-group-item-action active">신청받은내역</a>
+           <a href="/report/reportlist" class="list-group-item list-group-item-action">신고받은 내용</a>
             <a href="#" class="list-group-item list-group-item-action">회원탈퇴</a>
             </div>
 
         </div>
         <div class="col-9">
-          <h2 class="mb-3"><i class="bi bi-list-stars"></i> 나의 매칭목록</h2>
+          <h2 class="mb-3"><i class="bi bi-list-stars"></i> 신청 받은 내역</h2>
           <div class="table-responsive">
             <table class="table table-hover table-bordered">
               <tbody>
+                
                 <tr class="table-primary text-center">
                   <th style="width: 80px;">번호</th>
-                  <th>제목</th>
-                  <th style="width: 150px;">날짜</th>
-                  <th style="width: 200px;">신고/평점</th>
+                  <th style="width: 80px;">신청자</th>
+                  <th style="width: 150px;">경기장(장소)</th>
+                  <th style="width: 150px;">날짜(대전일)</th>
+  	              <th style="width: 200px;">상태 </th>
+  	              <th style="width: 200px;">버튼(수정) </th>
                 </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-info btn-sm mr-1" onclick="popResult()">결과작성</button>
-                  </td>
-                 
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-info btn-sm mr-1" onclick="popResult()">결과작성</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-info btn-sm mr-1" onclick="popResult()">결과작성</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
-                    <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
-                    <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
-                    <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
-                    <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
-                    <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
-                    <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">제목이 길게 들어갑니다</a></td>
-                  <td class="text-center">2020-09-05</td>
-                  <td class="text-center">
-                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
-                    <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
-                  </td>
-                </tr>
+                
+                
+                
+                
+             <c:forEach items="${lo  }" var="bo">
+             <c:if test="${bo.NOTICE_MSG_STATUS.equals('대기') || bo.NOTICE_MSG_STATUS.equals('수락')  || bo.NOTICE_MSG_STATUS.equals('신청중')}">
+					<tr class="odd gradeX">
+					<td>1<input type="hidden" value="${user.user_id }"
+							name="user.user_id" /> <input type="hidden"
+							value="${bo.NOTICE_MSG_NO}" name="NOTICE_MSG_NO" /> </td>
+						
+						<td><c:out value="${bo.NOTICE_MSG_RIVAL}" /></td>
+						<td><c:out value="${bo.NOTICE_MSG_PLACE}" /></td>
+						<td><fmt:formatDate value="${bo.NOTICE_MSG_TIME }"
+								pattern="yy-MM-dd" /></td>
+								<td><c:out value="${bo.NOTICE_MSG_STATUS}" /></td>
+						
+						
+						<td>
+						<c:choose>
+						<c:when test="${bo.NOTICE_MSG_STATUS.equals('신청중')}">
 
+							<button class="button" type="button"
+									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">수락</button>
+									<button class="button" type="button"
+									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">거절</button>
+									
+							</c:when>
+							
+								<c:when test="${bo.NOTICE_MSG_STATUS.equals('수락')}">
+
+							<button class="button" type="button"
+									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">경기취소</button>
+							</c:when>
+							
+							<c:when test="${bo.NOTICE_MSG_STATUS.equals('대기')}">
+								대기
+							</c:when>
+							
+									</c:choose>
+										</td>
+							</tr>
+					</c:if>			
+								
+
+							
+								
+							
+							
+				</c:forEach>
+				
+				
+				<c:forEach items="${lo2  }" var="bb">
+				 <c:if test="${bb.NOTICE_MSG_STATUS.equals('신청중') || bb.NOTICE_MSG_STATUS.equals('대기') || bb.NOTICE_MSG_STATUS.equals('수락') }">
+					<tr class="odd gradeX">
+						<td>1</td>
+						<td><c:out value="${bb.NOTICE_MSG_USER}" /></td>
+						<td><c:out value="${bb.NOTICE_MSG_PLACE}" /></td>
+						<td><fmt:formatDate value="${bb.NOTICE_MSG_TIME }"
+								pattern="yy-MM-dd" /></td>
+						<td><c:out value="${bb.NOTICE_MSG_STATUS}" /></td>
+						
+						
+						<td>
+						<c:choose>
+						<c:when test="${bb.NOTICE_MSG_STATUS.equals('신청중')}">
+
+							<button class="button" type="button"
+									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">수락</button>
+									
+									<button class="button" type="button"
+									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">거절</button>
+									
+							</c:when>
+							
+								<c:when test="${bb.NOTICE_MSG_STATUS.equals('수락')}">
+
+							<button class="button" type="button"
+									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">경기취소</button>
+							</c:when>
+							 	<c:when test="${bb.NOTICE_MSG_STATUS.equals('대기')}">
+									대기
+							</c:when>
+
+									</c:choose>
+										</td>
+							</tr>
+					</c:if>			
+				</c:forEach>
+             
+             
+             
               </tbody>
             </table>
           </div>
