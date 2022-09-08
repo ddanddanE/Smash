@@ -7,7 +7,7 @@
 	<select id="user_list" resultType="com.smash.VO.user.UserVO">
 		select * from user_table
 	</select>
-	<select id="user_report" resultType="com.smash.VO.ReportVO">
+	<select id="user_report" resultType="com.smash.VO.report.ReportVO">
 		select * from report_table
 	</select>
 </mapper>
