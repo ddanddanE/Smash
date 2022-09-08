@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.smash.mapper.MemberMapper">
+
+	<insert id="user_insert">
+	insert into test_user1(user_num, report_id, user_pw, user_name, user_email ) 
+	values(test_user1_SEQ.nextval,#{report_id},#{user_pw},#{user_name}, #{user_email})
+	
+	
+	</insert>
+
+
+</mapper>

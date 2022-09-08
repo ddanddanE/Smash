@@ -1,8 +1,6 @@
 package com.smash.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
-
-import java.net.http.HttpRequest;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.smash.VO.user.UserBasic;
+import com.smash.VO.match.noticeBVO;
+import com.smash.VO.report.ReportVO;
 import com.smash.VO.user.UserVO;
+import com.smash.service.match.MatchService;
 import com.smash.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,17 +27,77 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService uService;
+	private final MatchService match_service;
 
-	@GetMapping("/login")
-	public String loginget() {
-		return "/user/login";
+
+
+	
+	
+	//--------------------------------------------------↓0908
+	@PostMapping("/logincheck")
+	public String logincheck(HttpSession session, @RequestParam("User_Id") String User_Id, @RequestParam("User_Pw") String User_Pw) {
+		
+		UserVO vo = new UserVO();
+		vo.setUser_id(User_Id);
+		vo.setUser_pw(User_Pw);
+		
+		session.setAttribute("user", uService.login(vo));
+		
+		return "/user/main";
 	}
-
-	// 筌롫뗄�뵥占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 嚥≪뮄�젃占쎌뵥 �꽴占쏙옙�졃 jsp占쎈였占쎈즲嚥∽옙 占쎈릭占쎈뮉 占쎈읂占쎌뵠筌욑옙
+	
 	@PostMapping("/login")
 	public String loginpost() {
-		return "/user/login";
+		return "/";
 	}
+	
+	//나의 매칭 목록
+	@GetMapping("/matchinglist")
+	public String aa(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
+		uo = (UserVO)session.getAttribute("user");
+		
+		
+		session.setAttribute("user", uo);
+		
+		List<noticeBVO> lo = match_service.select_notice1(uo);
+		
+		m.addAttribute("lo", lo);
+
+		List<noticeBVO> lo2 = match_service.select_notice2(uo);
+	
+		m.addAttribute("lo2", lo2);
+		
+	
+		return "/user/matchinglist";
+	}
+	
+	//회원정보
+	@GetMapping("/memberinfo")
+	public void memberinfo() {
+		
+	}
+	
+	//나의 신청내역
+	@GetMapping("matchdetail")
+		public void matchdetail() {
+			
+		}
+	
+	//신청받은 내역
+	@GetMapping("match_receive")
+	public void match_receive() {
+		
+	}
+	
+
+	
+	
+	
+	
+
+	//------------------------------------------------------------- ↑0908
+	
+
 	@PostMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -46,29 +106,15 @@ public class UserController {
 
 	// 嚥≪뮄�젃占쎌뵥 占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎈툡占쎌뵠占쎈탵 �뜮袁⑥쓰 燁살꼵�� 筌띿쉸�몵筌롳옙 筌롫뗄�뵥 占쎈툡占쎈빍筌롳옙
 	// 占쎈뼄占쎈뻻 占쎈연疫뀐옙 占쎈읂占쎌뵠筌욑옙
-	@PostMapping("/logincheck")
-	public String logincheck(UserVO uvo, HttpSession session, @RequestParam("User_Id") String User_Id,
-			@RequestParam("User_Pw") String User_Pw) {
-
-		uvo.setUser_id(User_Id);
-		uvo.setUser_pw(User_Pw);
-		
-		uvo = uService.login(uvo);
-		if(uvo == null) {
-			return "redirect: /user/login";
-		}else {
-			session.setAttribute("user", uvo);
-			
-			return "/user/test";
-		}
-	}
-
+	
 	// 筌롫뗄�뵥占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎌돳占쎌뜚揶쏉옙占쎌뿯占쎈릭筌롳옙 占쎌젟癰귣똻�젫�⑨옙 占쎈짗占쎌벥
 	@GetMapping("/signup/agree")
 	public String agree() {
 		return "/user/agree";
 	}
-
+	
+	
+	
 	// 占쎌젟癰귣똻�젫�⑨옙 占쎈짗占쎌벥占쎈퓠占쎄퐣 占쎌뵥占쎌읅占쎄텢占쎈퉮占쎌뿯占쎌젾
 	@PostMapping("/signup")
 	public String signup(Model m, HttpServletRequest request) {
