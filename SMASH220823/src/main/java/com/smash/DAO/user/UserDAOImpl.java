@@ -28,9 +28,39 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public UserVO login(UserVO vo) {
-		System.out.println("다오!!!!"+vo.getUser_id());
 		return uMap.login(vo);
 	}
+
+	@Override
+	public UserVO findid(UserVO uvo) {
+		return uMap.findid(uvo);
+	}
+
+	@Override
+	public UserVO findpw(UserVO uvo) {
+		return uMap.findpw(uvo);
+	}
+
+	@Override
+	public UserVO pwChk(UserVO uvo) {
+		return uMap.pwChk(uvo);
+	}
+
+	@Override
+	public void update(UserVO uvo) {
+		uMap.update(uvo);
+	}
+
+	@Override
+	public UserVO idChk(UserVO uvo) {
+		return uMap.idChk(uvo);
+	}
+
+	@Override
+	public void delete(UserVO uvo) {
+		uMap.delete(uvo);
+	}
+
 
 
 }
