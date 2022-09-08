@@ -73,8 +73,58 @@ public class UserController {
 	
 	//회원정보
 	@GetMapping("/memberinfo")
-	public void memberinfo() {
+	public void memberinfo(UserVO uvo, HttpSession session, Model m) {
+		uvo = (UserVO) session.getAttribute("user");
 		
+		String email = uvo.getUser_email();
+		String firEmail = email.substring(0, email.indexOf("@"));
+		String secEmail = email.substring(email.indexOf("@") + 1);
+
+		String adr = uvo.getUser_address();
+
+		String adr1 = adr.substring(0, adr.indexOf("@"));
+		String adr2 = adr.substring(adr.indexOf("@") + 1, adr.indexOf("#"));
+		String adr3 = adr.substring(adr.indexOf("#") + 1, adr.indexOf("("));
+		String adr4 = adr.substring(adr.indexOf("(") + 1, adr.indexOf(")"));
+
+		System.out.println(adr1);
+		System.out.println(adr2);
+		System.out.println(adr3);
+		System.out.println(adr4);
+
+		m.addAttribute("firEmail", firEmail);
+		m.addAttribute("secEmail", secEmail);
+
+		m.addAttribute("adr1", adr1);
+		m.addAttribute("adr2", adr2);
+		m.addAttribute("adr3", adr3);
+		m.addAttribute("adr4", adr4);
+
+		String s_Adr = uvo.getUser_sport_address();
+		System.out.println(s_Adr);
+		if (s_Adr == null || s_Adr.equals("notsubmit")) {
+			m.addAttribute("s_Adr1", "");
+			m.addAttribute("s_Adr2", "");
+			m.addAttribute("s_Adr3", "");
+			m.addAttribute("s_Adr4", "");
+		} else {
+			String s_Adr1 = s_Adr.substring(0, s_Adr.indexOf("@"));
+			String s_Adr2 = s_Adr.substring(s_Adr.indexOf("@") + 1, s_Adr.indexOf("#"));
+			String s_Adr3 = s_Adr.substring(s_Adr.indexOf("#") + 1, s_Adr.indexOf("("));
+			String s_Adr4 = s_Adr.substring(s_Adr.indexOf("(") + 1, s_Adr.indexOf(")"));
+
+			System.out.println(s_Adr1);
+			System.out.println(s_Adr2);
+			System.out.println(s_Adr3);
+			System.out.println(s_Adr4);
+
+			m.addAttribute("s_Adr1", s_Adr1);
+			m.addAttribute("s_Adr2", s_Adr2);
+			m.addAttribute("s_Adr3", s_Adr3);
+			m.addAttribute("s_Adr4", s_Adr4);
+		}
+
+		System.out.println(s_Adr);
 	}
 	
 	//나의 신청내역
