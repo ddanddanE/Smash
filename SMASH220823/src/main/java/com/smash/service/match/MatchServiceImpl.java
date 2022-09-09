@@ -28,11 +28,6 @@ public class MatchServiceImpl implements MatchService {
 		
 		
 	}
-
-
-
-
-
 	
 	@Override
 	public List<noticeBVO> select_notice1(UserVO no) {

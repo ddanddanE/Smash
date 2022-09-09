@@ -31,6 +31,7 @@ public class RateController {
 	private final RateService ra_service;
 
 	private final UserService uService;
+	
 
 	/*-----------------------myPage에서 평점 이동------------------------------------*/
 
@@ -49,7 +50,7 @@ public class RateController {
 
 	}
 
-	@PostMapping("/rate_success")
+	@PostMapping("/rate_suc")
 	@ResponseBody
 	public String good(RateBVO bo, Model m, @RequestParam("rival") String rival, @RequestParam("id") String id,
 			noticeBVO no) {

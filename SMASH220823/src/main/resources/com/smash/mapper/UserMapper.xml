@@ -15,8 +15,35 @@
 		#{user_resinum},#{user_email},#{user_phonenum},#{user_birthday},#{user_gender},#{user_address},
 		#{user_agree})
 	</insert>
+	
 	<select id="login" resultType="com.smash.VO.user.UserVO">
 		select * from user_table where
 		user_id like #{user_id} and user_pw like #{user_pw}
 	</select>
+	
+	<select id="findid" resultType="com.smash.VO.user.UserVO">
+		select * from user_table where
+		user_name like #{user_name} and user_resinum like #{user_resinum} and user_phonenum = #{user_phonenum}
+	</select>
+	
+	<select id="findpw" resultType="com.smash.VO.user.UserVO">
+		select * from user_table where
+		user_id like #{user_id} and user_name like #{user_name} and user_resinum like #{user_resinum} and user_phonenum = #{user_phonenum}
+	</select>
+	
+	<select id="pwChk" resultType="com.smash.VO.user.UserVO">
+		select * from user_table where
+		user_id like #{user_id} and user_pw like #{user_pw}
+	</select>
+	<update id="update">
+		update user_table set user_name = #{user_name}, user_email=#{user_email}, user_phonenum = #{user_phonenum},
+		user_birthday = #{user_birthday}, user_address=#{user_address},user_sport_address=#{user_sport_address} where user_id like #{user_id} and user_pw like #{user_pw}
+	</update>
+	
+	<select id="idChk" resultType="com.smash.VO.user.UserVO">
+		select * from user_table where user_id like #{user_id}
+	</select>
+	<delete id="delete">
+		delete from user_table where user_id like #{user_id}
+	</delete>
 </mapper>
