@@ -26,9 +26,6 @@ public class MatchDAOImpl implements MatchDAO {
 	}
 
 
-
-
-
 	
 	@Override
 	public List<noticeBVO> select_notice1(UserVO no) {
@@ -43,7 +40,11 @@ public class MatchDAOImpl implements MatchDAO {
 	}
 
 
-
+	/*추가*/
+	@Override
+	public void insert_apply(noticeBVO no) {
+		match_mapper.insert_apply(no);
+	}
 
 	
 	

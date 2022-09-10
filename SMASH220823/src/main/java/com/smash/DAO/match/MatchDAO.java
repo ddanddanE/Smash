@@ -18,5 +18,8 @@ public interface MatchDAO {
 	
 	public noticeBVO select_match(noticeBVO mo);
 	
+	/*추가*/
+	public void insert_apply(noticeBVO mo);
+	
 
 }

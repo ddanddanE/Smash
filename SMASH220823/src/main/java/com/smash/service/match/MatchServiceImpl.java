@@ -42,7 +42,11 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 
-
+	/*추가*/
+	@Override
+	public void insert_apply(noticeBVO no) {
+		match_dao.insert_apply(no);
+	}
 
 	
 	

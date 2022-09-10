@@ -16,10 +16,18 @@ public class noticeBVO {
 	private String NOTICE_MSG_RIVAL;
 	private String NOTICE_MSG_STATUS;
 	private String NOTICE_MSG_PLACE;
-	private Date NOTICE_MSG_TIME;
+	private String NOTICE_MSG_TIME;
 	private int NOTICE_MSG_URATE;
 	private int NOTICE_MSG_RRATE;
 	
+	
+	
+	
+	/*추가*/
+	private String NOTICE_MSG_Content;
+	
+	private int Board_Num;
+	private String Board_Title;
 	
 	
 	

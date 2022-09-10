@@ -17,5 +17,12 @@
 	</select>
 	
 	
+	<!-- 신청하기 insert -->
+	<insert id="insert_apply">
+	insert into NOTICE_MSG_TABLE
+	(Board_Num,Board_Title,NOTICE_MSG_Content,NOTICE_MSG_USER,NOTICE_MSG_RIVAL,NOTICE_MSG_PLACE,NOTICE_MSG_TIME)
+	 values
+	 (#{Board_Num},#{Board_Title},#{NOTICE_MSG_Content},#{NOTICE_MSG_USER},#{NOTICE_MSG_RIVAL},#{NOTICE_MSG_PLACE},#{NOTICE_MSG_TIME})
+	</insert>
 	
 </mapper>

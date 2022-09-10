@@ -22,6 +22,9 @@ public interface MatchMapper {
 	public List<noticeBVO> select_notice2(UserVO no);
 	
 	public noticeBVO select_match(noticeBVO mo);
+	
+	/*추가*/
+	public void insert_apply(noticeBVO mo);
 
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smash.VO.match.noticeBVO;
+import com.smash.VO.rate.RateBVO;
 import com.smash.VO.report.ReportVO;
 import com.smash.VO.user.UserVO;
 import com.smash.service.match.MatchService;
@@ -54,6 +55,7 @@ public class UserController {
 	//나의 매칭 목록
 	@GetMapping("/matchinglist")
 	public String aa(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
+		
 		uo = (UserVO)session.getAttribute("user");
 		
 		
@@ -303,4 +305,33 @@ public class UserController {
 		System.out.println("T");
 		return "T";
 	}
+	
+	
+	/*--------------------------------------시작-------------------------------------------------*/
+	/*--------------------------------------로그인 후 matchlist이동-------------------------------------------------*/
+	@GetMapping("/matchlist")
+	public String aa3(HttpSession session, UserVO uo,Model m) {
+		
+		uo = (UserVO)session.getAttribute("user");
+		
+		
+		session.setAttribute("user", uo);
+		
+		
+	
+		return "/user/matchlist";
+	}
+	
+	/*--------------------------------------신청하기 누르면 실행-------------------------------------------------*/
+	@PostMapping("/apply_suc")
+	@ResponseBody
+	public String good(noticeBVO no) {
+		
+		
+		
+		match_service.insert_apply(no);		
+		
+		return "suc";
+	}
+	
 }
