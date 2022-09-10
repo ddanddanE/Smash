@@ -26,9 +26,9 @@ public class noticeBVO {
 	/*추가*/
 	private String NOTICE_MSG_Content;
 	
-	private int Board_Num;
-	private String Board_Title;
+	private int BOARD_NUM;
 	
+	private String BOARD_TITLE;
 	
 	
 	

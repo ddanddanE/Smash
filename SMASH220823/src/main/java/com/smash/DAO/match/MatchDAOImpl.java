@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.smash.VO.match.noticeBVO;
+import com.smash.VO.match.resultBVO;
 import com.smash.VO.user.UserVO;
 import com.smash.mapper.MatchMapper;
 
@@ -46,6 +47,28 @@ public class MatchDAOImpl implements MatchDAO {
 		match_mapper.insert_apply(no);
 	}
 
+	@Override
+	public void update_apply(noticeBVO no) {
+		match_mapper.update_apply(no);
+	}
+	@Override
+	public void update_apply2(noticeBVO no) {
+		match_mapper.update_apply2(no);
+	}
+	@Override
+	public void update_apply3(noticeBVO no) {
+		match_mapper.update_apply3(no);
+	}
 	
+	@Override
+	public void update_apply4(noticeBVO no) {
+		match_mapper.update_apply4(no);
+	}
+	
+	@Override
+	public void insert_result(resultBVO mo) {
+	
+		match_mapper.insert_result(mo);
+	}
 	
 	}

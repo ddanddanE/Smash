@@ -12,8 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smash.VO.match.noticeBVO;
 import com.smash.VO.report.ReportVO;
@@ -134,7 +137,14 @@ public class HomeController {
 	public void rate_receive2() {
 		
 	}
-
+	@GetMapping("/user/memberinfo")
+	public void memberinfo2() {
+		
+	}
+	
+	
+	/*-------------------- 수정-----------------------------*/
+	
 	@GetMapping("/user/matchdetail")
 	public String matchdetail2(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
 			
@@ -156,7 +166,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/user/match_receive")
-	public String match_receive2(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
+	public String match_receive2(HttpSession session, UserVO uo,Model m,noticeBVO vo) {
 			
 			uo = (UserVO)session.getAttribute("user");
 			
@@ -166,21 +176,27 @@ public class HomeController {
 			List<noticeBVO> lo = match_service.select_notice1(uo);
 			
 			m.addAttribute("lo", lo);
-
-			List<noticeBVO> lo2 = match_service.select_notice2(uo);
-		
-			m.addAttribute("lo2", lo2);
-			
 		
 			return "/user/match_receive";
 	}
 	
-	
-	@GetMapping("/user/memberinfo")
-	public void memberinfo2() {
+	@PostMapping("/user/applyn")
+	@ResponseBody
+	public String applun(noticeBVO no,@RequestParam("inlineRadioOptions")String anser) {
+		String yn=null;
+		if(anser.equals("yes")) {
+			match_service.update_apply(no);
+			match_service.update_apply2(no);
+			yn="Y";
+		}else {
+			match_service.update_apply3(no);
+			yn="N";
+		}
 		
+		
+		return yn;
 	}
 	
-	
+	/**/
 	
 }

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smash.VO.match.noticeBVO;
+import com.smash.VO.match.resultBVO;
 import com.smash.VO.user.UserVO;
 import com.smash.service.match.MatchService;
 import com.smash.service.user.UserService;
@@ -32,7 +34,7 @@ import lombok.extern.log4j.Log4j;
 public class MatchController {
 
 
-	private final MatchService match_mapper;
+	private final MatchService match_service;
 	
 	private final UserService uService;
 	
@@ -49,11 +51,11 @@ public class MatchController {
 		session.setAttribute("user", uService.login(vo));
 		
 		
-		List<noticeBVO> lo = match_mapper.select_notice1(vo);
+		List<noticeBVO> lo = match_service.select_notice1(vo);
 		
 			m.addAttribute("lo", lo);
 
-		List<noticeBVO> lo2 = match_mapper.select_notice2(vo);
+		List<noticeBVO> lo2 = match_service.select_notice2(vo);
 		
 		m.addAttribute("lo2", lo2);
 		
@@ -63,15 +65,14 @@ public class MatchController {
 	}
 
 	/*		경기 후 결과 선택			*/
-	@GetMapping("/match/result")
-	public String del(Model m,noticeBVO no) {
+	@PostMapping("/match/result")
+	@ResponseBody
+	public String result(resultBVO ro,noticeBVO no) {
 
-		no = match_mapper.select_match(no);
+		match_service.insert_result(ro);
+		match_service.update_apply4(no);
 		
-		m.addAttribute("NOTICE_MSG_USER", no.getNOTICE_MSG_USER());
-		m.addAttribute("NOTICE_MSG_RIVAL", no.getNOTICE_MSG_RIVAL());
-		m.addAttribute("NOTICE_MSG_NO", no.getNOTICE_MSG_NO());
-		return "match/result";
+		return "Y";
 	}
 	
 }

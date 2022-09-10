@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.smash.VO.match.noticeBVO;
+import com.smash.VO.match.resultBVO;
 import com.smash.VO.user.UserVO;
 
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,13 @@ public interface MatchMapper {
 	/*추가*/
 	public void insert_apply(noticeBVO mo);
 
+	public void update_apply(noticeBVO mo);
 	
+	public void update_apply2(noticeBVO mo);
+	
+	public void update_apply3(noticeBVO mo);
+	
+	public void update_apply4(noticeBVO mo);
+	
+	public void insert_result(resultBVO mo);
 }

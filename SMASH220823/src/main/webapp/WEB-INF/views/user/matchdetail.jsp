@@ -11,7 +11,7 @@
 
           <div class="text-center p-3 mb-3 border rounded">
             <img src="/resources/images/profile1.jpg" class="rounded-circle" width="100%">
-            <div class="p-3">ID입니다</div>
+            <div class="p-3">${user.user_id}</div>
           </div>
 
            <div class="list-group">
@@ -51,8 +51,7 @@
 						
 						<td><c:out value="${bo.NOTICE_MSG_RIVAL}" /></td>
 						<td><c:out value="${bo.NOTICE_MSG_PLACE}" /></td>
-						<td><fmt:formatDate value="${bo.NOTICE_MSG_TIME }"
-								pattern="yy-MM-dd" /></td>
+						<td><c:out value="${bo.NOTICE_MSG_TIME}" /></td>
 								<td><c:out value="${bo.NOTICE_MSG_STATUS}" /></td>
 						
 						
@@ -92,8 +91,7 @@
 						<td>1</td>
 						<td><c:out value="${bb.NOTICE_MSG_USER}" /></td>
 						<td><c:out value="${bb.NOTICE_MSG_PLACE}" /></td>
-						<td><fmt:formatDate value="${bb.NOTICE_MSG_TIME }"
-								pattern="yy-MM-dd" /></td>
+						<td><c:out value="${bo.NOTICE_MSG_TIME}" /></td>
 						<td><c:out value="${bb.NOTICE_MSG_STATUS}" /></td>
 						
 						
