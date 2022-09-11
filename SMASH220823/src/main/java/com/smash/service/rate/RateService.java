@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.smash.VO.match.noticeBVO;
 import com.smash.VO.rate.RateBVO;
+import com.smash.VO.user.UserVO;
 
 public interface RateService {
 
@@ -23,4 +24,7 @@ public interface RateService {
 
 	public void rate_update2(noticeBVO no);/* 도전자가 평점매긴 후 평점 비활성화 */
 
+	public List<RateBVO> rate_select1(UserVO uo);/* 나의 정보(평점) 출력 */
+	
+	
 }

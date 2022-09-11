@@ -149,7 +149,11 @@ textarea {
 	cursor: pointer;
 	outline: none;
 }
-
+.span{
+font-size: 1.5em;
+	color: transparent;
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
 </style>
 
   <main>
@@ -159,7 +163,8 @@ textarea {
 
           <div class="text-center p-3 mb-3 border rounded">
             <img src="/resources/images/profile1.jpg" class="rounded-circle" width="100%">
-            <div class="p-3">${user.user_id}</div>
+            <div class="p-3"><span class="span">★</span>${avg}<br>
+            				${user.user_id}</div>
           </div>
 
           <div class="list-group">

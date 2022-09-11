@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smash.VO.match.noticeBVO;
+import com.smash.VO.rate.RateBVO;
 import com.smash.VO.report.ReportVO;
 import com.smash.VO.user.UserVO;
 import com.smash.service.match.MatchService;
+import com.smash.service.rate.RateService;
 import com.smash.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,6 +38,7 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	private final MatchService match_service;
+	private final RateService ra_service;
 	
 	
 	/**
@@ -148,6 +151,11 @@ public class HomeController {
 	@GetMapping("/user/matchdetail")
 	public String matchdetail2(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
 			
+		double total = 0;
+		int cnt = 0;
+		double avg = 0;
+		
+		
 			uo = (UserVO)session.getAttribute("user");
 			
 			
@@ -161,6 +169,18 @@ public class HomeController {
 		
 			m.addAttribute("lo2", lo2);
 			
+
+			List<RateBVO> bb = ra_service.rate_select1(uo);
+
+			for (RateBVO ba : bb) {
+				total = total + ba.getRating();
+				cnt++;
+			}
+			avg = total / cnt;
+			String aa = String.format("%.1f", avg);
+
+			m.addAttribute("avg", aa);
+			
 		
 			return "/user/matchdetail";
 	}
@@ -168,7 +188,12 @@ public class HomeController {
 	@GetMapping("/user/match_receive")
 	public String match_receive2(HttpSession session, UserVO uo,Model m,noticeBVO vo) {
 			
-			uo = (UserVO)session.getAttribute("user");
+		double total = 0;
+		int cnt = 0;
+		double avg = 0;	
+		
+		
+		uo = (UserVO)session.getAttribute("user");
 			
 			
 			session.setAttribute("user", uo);
@@ -176,6 +201,20 @@ public class HomeController {
 			List<noticeBVO> lo = match_service.select_notice1(uo);
 			
 			m.addAttribute("lo", lo);
+			
+			
+
+			List<RateBVO> bb = ra_service.rate_select1(uo);
+
+			for (RateBVO ba : bb) {
+				total = total + ba.getRating();
+				cnt++;
+			}
+			avg = total / cnt;
+			String aa = String.format("%.1f", avg);
+
+			m.addAttribute("avg", aa);
+			
 		
 			return "/user/match_receive";
 	}

@@ -18,6 +18,7 @@ import com.smash.VO.rate.RateBVO;
 import com.smash.VO.report.ReportVO;
 import com.smash.VO.user.UserVO;
 import com.smash.service.match.MatchService;
+import com.smash.service.rate.RateService;
 import com.smash.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class UserController {
 
 	private final UserService uService;
 	private final MatchService match_service;
-
+	private final RateService ra_service;
 
 
 	
@@ -56,6 +57,12 @@ public class UserController {
 	@GetMapping("/matchinglist")
 	public String aa(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
 		
+		double total = 0;
+		int cnt = 0;
+		double avg = 0;
+		
+		
+		
 		uo = (UserVO)session.getAttribute("user");
 		
 		
@@ -68,6 +75,19 @@ public class UserController {
 		List<noticeBVO> lo2 = match_service.select_notice2(uo);
 	
 		m.addAttribute("lo2", lo2);
+		
+		
+		
+		List<RateBVO> bb = ra_service.rate_select1(uo);
+
+		for (RateBVO ba : bb) {
+			total = total + ba.getRating();
+			cnt++;
+		}
+		avg = total / cnt;
+		String aa = String.format("%.1f", avg);
+
+		m.addAttribute("avg", aa);
 		
 	
 		return "/user/matchinglist";

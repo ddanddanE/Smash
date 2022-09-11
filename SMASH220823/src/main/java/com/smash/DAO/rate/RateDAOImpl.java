@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.smash.VO.match.noticeBVO;
 import com.smash.VO.rate.RateBVO;
+import com.smash.VO.user.UserVO;
 import com.smash.mapper.RateMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -55,5 +56,10 @@ public class RateDAOImpl implements RateDAO{
 	@Override
 	public void rate_update2(noticeBVO no) {
 		ra_mapper.rate_update2(no);
+	}
+
+	@Override
+	public List<RateBVO> rate_select1(UserVO uo) {
+		return ra_mapper.rate_select1(uo);
 	}
 }

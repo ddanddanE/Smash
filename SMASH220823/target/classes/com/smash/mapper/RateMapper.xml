@@ -24,6 +24,10 @@
 		select userName,rival,rating from rate_table where rival=#{rival}
 	</select>
 	
+	<select id="rate_select1" resultType="com.smash.VO.rate.RateBVO">
+		select userName,rival,rating from rate_table where userName=#{user_id}
+	</select>
+	
 	
 	
 	<select id="rate_select2" resultType="com.smash.VO.match.noticeBVO">

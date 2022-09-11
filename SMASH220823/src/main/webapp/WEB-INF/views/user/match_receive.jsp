@@ -3,7 +3,13 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
-
+<style>
+.span{
+font-size: 1.5em;
+	color: transparent;
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+</style>
   <main>
     <section class="container">
       <div class="row mb-4">
@@ -11,7 +17,8 @@
 
           <div class="text-center p-3 mb-3 border rounded">
             <img src="/resources/images/profile1.jpg" class="rounded-circle" width="100%">
-            <div class="p-3">${user.user_id }</div>
+            <div class="p-3"><span class="span">★</span>${avg}<br>
+            				${user.user_id}</div>
           </div>
 
           <div class="list-group">
@@ -87,7 +94,7 @@
               <li class="page-item"><a class="page-link" href="#">1</a></li>
               <li class="page-item active" aria-current="page">
                 <span class="page-link">
-                  2
+                  
                   <span class="sr-only">(current)</span>
                 </span>
               </li>
