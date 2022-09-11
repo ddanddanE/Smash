@@ -22,7 +22,7 @@
 	insert into NOTICE_MSG_TABLE
 	(Board_Num,Board_Title,NOTICE_MSG_Content,NOTICE_MSG_USER,NOTICE_MSG_RIVAL,NOTICE_MSG_PLACE,NOTICE_MSG_TIME)
 	 values
-	 (#{Board_Num},#{Board_Title},#{NOTICE_MSG_Content},#{NOTICE_MSG_USER},#{NOTICE_MSG_RIVAL},#{NOTICE_MSG_PLACE},#{NOTICE_MSG_TIME})
+	 (#{BOARD_NUM},#{BOARD_TITLE},#{NOTICE_MSG_Content},#{NOTICE_MSG_USER},#{NOTICE_MSG_RIVAL},#{NOTICE_MSG_PLACE},#{NOTICE_MSG_TIME})
 	</insert>
 	
 	<update id="update_apply">

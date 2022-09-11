@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@include file="../includes/header.jsp"%>
 <Style>
 .span{
@@ -39,11 +40,11 @@ font-size: 1.5em;
                 
                 <tr class="table-primary text-center">
                   <th style="width: 50px;">번호</th>
-                  <th style="width: 50px;">상대</th>
+                  <th style="width: 80px;">상대</th>
                   <th style="width: 200px;">방제목</th>
                   <th style="width: 70px;">경기장</th>
                   <th style="width: 170px;">날짜(대전일)</th>
-  	              <th style="width: 50px;">상태 </th>
+  	              <th style="width: 80px;">상태 </th>
                 </tr>
 
 				
@@ -55,7 +56,7 @@ font-size: 1.5em;
 						<td><c:out value="${bb.NOTICE_MSG_USER}" /></td>
 						<td><c:out value="${bb.BOARD_TITLE}" /></td>
 						<td><c:out value="${bb.NOTICE_MSG_PLACE}" /></td>
-						<td><c:out value="${bb.NOTICE_MSG_TIME}" /></td>
+						<td><c:out value="${fn:substring(bb.NOTICE_MSG_TIME,0,13)}"/>시</td>
 						
 						
 						<td>

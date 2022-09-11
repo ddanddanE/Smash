@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@include file="../includes/header.jsp"%>
 <style>
 .span{
@@ -39,7 +40,7 @@ font-size: 1.5em;
                 
                 <tr class="table-primary text-center">
                   <th style="width: 50px;">번호</th>
-                  <th style="width: 50px;">신청자</th>
+                  <th style="width: 80px;">신청자</th>
                   <th style="width: 200px;">방제목</th>
                   <th style="width: 70px;">경기장</th>
                   <th style="width: 170px;">날짜(대전일)</th>
@@ -59,7 +60,7 @@ font-size: 1.5em;
 						<td><c:out value="${bo.NOTICE_MSG_RIVAL}" /></td>
 						<td><c:out value="${bo.BOARD_TITLE}" /></td>
 						<td><c:out value="${bo.NOTICE_MSG_PLACE}" /></td>
-						<td><c:out value="${bo.NOTICE_MSG_TIME}" /></td>
+						<td><c:out value="${fn:substring(bo.NOTICE_MSG_TIME,0,13)}"/>시</td>
 						<td><c:choose>
 						<c:when test="${bo.NOTICE_MSG_STATUS.equals('신청')}">
 							
@@ -94,7 +95,7 @@ font-size: 1.5em;
               <li class="page-item"><a class="page-link" href="#">1</a></li>
               <li class="page-item active" aria-current="page">
                 <span class="page-link">
-                  
+                  2
                   <span class="sr-only">(current)</span>
                 </span>
               </li>
@@ -128,6 +129,7 @@ font-size: 1.5em;
           <form id="myform" name="myform" >
           <input type="hidden" id="rival" class="rival" name="NOTICE_MSG_RIVAL" />
           <input type="hidden" id="num" class="num" name="BOARD_NUM" />
+          <center>
              <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes">
                 <label class="form-check-label" for="inlineRadio1">수락</label>
@@ -136,6 +138,7 @@ font-size: 1.5em;
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no">
                 <label class="form-check-label" for="inlineRadio2">거절</label>
               </div>
+              </center>
               </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onclick="sendyn()">응답하기</button>
@@ -157,12 +160,13 @@ font-size: 1.5em;
         </div>
         <div class="modal-body">
           <form id="myresult" name="myresult" >
-          <input type="hidden1" id="rival" class="rival" name="NOTICE_MSG_RIVAL" />
-          <input type="hidden1" id="rival2" class="rival2" name="rivalName" />
-          <input type="hidden1" id="user" class="user" name="NOTICE_MSG_USER" />
-          <input type="hidden1" id="user2" class="user2" name="userName" />
-          <input type="hidden1" id="num" class="num" name="NOTICE_MSG_NO" />
-             <div class="form-check form-check-inline">
+          <input type="hidden" id="rival" class="rival" name="NOTICE_MSG_RIVAL" />
+          <input type="hidden" id="rival2" class="rival2" name="rivalName" />
+          <input type="hidden" id="user" class="user" name="NOTICE_MSG_USER" />
+          <input type="hidden" id="user2" class="user2" name="userName" />
+          <input type="hidden" id="num" class="num" name="NOTICE_MSG_NO" />
+           <center>
+           	    <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="result" id="result" value="승">
                 <label class="form-check-label" for="result">승</label>
               </div>
@@ -178,6 +182,7 @@ font-size: 1.5em;
                 <input class="form-check-input" type="radio" name="result" id="result" value="노쇼">
                 <label class="form-check-label" for="result">노쇼</label>
               </div>
+              </center>
               </form>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" onclick="sendre()">결과제출</button>

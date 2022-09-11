@@ -147,9 +147,9 @@
       </div>
       <div class="modal-body">
       <form id="myform" name="myform">
-        <input type="hidden" name="Board_Num" value="2">
+        <input type="hidden" name="BOARD_NUM" value="2">
         <input type="hidden" name="NOTICE_MSG_RIVAL" value="${user.user_id }">
-        <input type="hidden" name="Board_Title" value="종로구 솔데스트에서 한게임 해요">
+        <input type="hidden" name="BOARD_TITLE" value="종로구 솔데스트에서 한게임 해요">
         <div class="border mb-3" id="map-detail" style="width:100%;height:200px;"></div>
         <p>
           <div><span class="badge badge-pill badge-primary mr-2" style="width:80px;">개설자</span>
@@ -161,7 +161,7 @@
           <div><span class="badge badge-pill badge-primary mr-2" style="width:80px;">인 원</span>4명 (혼성)</div>
           <div class="d-flex">
               <div class="mr-2"><span class="badge badge-pill badge-primary" style="width:80px;">내 용</span></div>
-              <div><input type="text" value="즐겁게 게임해요" name="Board_Title" readonly="readonly" style="border:none"><br></div>
+              <div><input type="text" value="즐겁게 게임해요" name="BOARD_TITLE" readonly="readonly" style="border:none"><br></div>
           </div>
         </p>
         
