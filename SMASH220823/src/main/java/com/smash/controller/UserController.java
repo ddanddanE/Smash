@@ -88,20 +88,16 @@ public class UserController {
 	public void match_receive() {
 		
 	}
-	
-
-	
-	
-	
-	
-
 	//------------------------------------------------------------- ↑0908
-	
-
-	@PostMapping("/logout")
-	public String logout(HttpSession session) {
+	@GetMapping("/logout")
+	public String logoutget(HttpSession session) {
 		session.invalidate();
-		return "redirect: /main";
+		return "redirect: /";
+	}
+	@PostMapping("/logout")
+	public String logoutpost(HttpSession session) {
+		session.invalidate();
+		return "redirect: /";
 	}
 
 	// 嚥≪뮄�젃占쎌뵥 占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎈툡占쎌뵠占쎈탵 �뜮袁⑥쓰 燁살꼵�� 筌띿쉸�몵筌롳옙 筌롫뗄�뵥 占쎈툡占쎈빍筌롳옙
@@ -113,33 +109,13 @@ public class UserController {
 		return "/user/agree";
 	}
 	
-	
-	
-	// 占쎌젟癰귣똻�젫�⑨옙 占쎈짗占쎌벥占쎈퓠占쎄퐣 占쎌뵥占쎌읅占쎄텢占쎈퉮占쎌뿯占쎌젾
-	@PostMapping("/signup")
-	public String signup(Model m, HttpServletRequest request) {
-		String resultagr = request.getParameter("resultagr");
-		m.addAttribute("resultagr", resultagr);
-
-		return "/user/signup";
-	}
-
 	@PostMapping("/success")
 	public String complete(UserVO uvo, HttpServletRequest request) {
 		String User_id = request.getParameter("user_id");
-		int User_agree = Integer.parseInt(request.getParameter("user_agree"));
 		String User_Sport_Address = request.getParameter("user_sport_address");
 
-		uvo.setUser_id(User_id.toLowerCase());
-		uvo.setUser_agree(User_agree);
-		System.out.println(uvo.getUser_id());
-
-		if (User_Sport_Address.toLowerCase().equals("notsubmit")) {
-			uService.insert_no(uvo);
-		} else {
-			uService.insert(uvo);
-		}
-
+		uService.insert(uvo);	
+		
 		return "/user/success";
 	}
 

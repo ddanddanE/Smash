@@ -6,8 +6,6 @@ public interface UserService {
 	
 	void insert(UserVO uvo);
 
-	void insert_no(UserVO uvo);
-
 	UserVO login(UserVO vo);
 
 	UserVO findid(UserVO uvo);

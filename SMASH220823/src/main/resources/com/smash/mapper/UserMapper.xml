@@ -4,16 +4,9 @@
 <mapper namespace="com.smash.mapper.UserMapper">
 	<insert id="insert">
 		insert into user_table(User_Id,User_Pw,User_Name,User_ResiNum,User_Email,User_PhoneNum,User_BirthDay,
-		User_Gender,User_Address,User_Sport_Address,User_Agree) values(#{user_id},#{user_pw},#{user_name},
+		User_Gender,User_Address,User_Sport_Address,User_SPORT_ADDRESS_X,User_SPORT_ADDRESS_Y) values(#{user_id},#{user_pw},#{user_name},
 		#{user_resinum},#{user_email},#{user_phonenum},#{user_birthday},#{user_gender},#{user_address},
-		#{user_sport_address},#{user_agree})
-	</insert>
-	
-	<insert id="insert_no">
-		insert into user_table(User_Id,User_Pw,User_Name,User_ResiNum,User_Email,User_PhoneNum,User_BirthDay,
-		User_Gender,User_Address,User_Agree) values(#{user_id},#{user_pw},#{user_name},
-		#{user_resinum},#{user_email},#{user_phonenum},#{user_birthday},#{user_gender},#{user_address},
-		#{user_agree})
+		#{user_sport_address},#{user_sport_address_x},#{user_sport_address_y})
 	</insert>
 	
 	<select id="login" resultType="com.smash.VO.user.UserVO">

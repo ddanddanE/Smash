@@ -53,7 +53,7 @@
           			<a href="matchinglist.html" class="btn btn-light">마이페이지</a>
         		</div>
         		<div class="ml-1">
-          			<a href="login" class="btn btn-light">로그아웃</a>
+          			<a href="/user/logout" class="btn btn-light">로그아웃</a>
         		</div>
          		
         </c:if>
