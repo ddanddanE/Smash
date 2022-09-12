@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smash.VO.match.noticeBVO;
+import com.smash.VO.rate.RateBVO;
 import com.smash.VO.report.ReportVO;
 import com.smash.VO.user.UserVO;
 import com.smash.service.match.MatchService;
+import com.smash.service.rate.RateService;
 import com.smash.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,15 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService uService;
+	private final MatchService match_service;
+	private final RateService ra_service;
+
+
+	
+	
+	//--------------------------------------------------↓0908
+	@PostMapping("/logincheck")
+	public String logincheck(HttpSession session, @RequestParam("User_Id") String User_Id, @RequestParam("User_Pw") String User_Pw) {
 	private final MatchService match_service;
 	Cookie idCookie;
 	
@@ -153,38 +164,75 @@ public class UserController {
 
 			List<noticeBVO> lo2 = match_service.select_notice2(uo);
 		
-			m.addAttribute("lo2", lo2);
-			
-		
-			return "/user/matchdetail";
+		return "/user/test";
 	}
 	
-	//신청받은 내역
-	@GetMapping("/match_receive")
-	public String match_receive2(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
-			
-			uo = (UserVO)session.getAttribute("user");
-			
-			
-			session.setAttribute("user", uo);
-			
-			List<noticeBVO> lo = match_service.select_notice1(uo);
-			
-			m.addAttribute("lo", lo);
+	@PostMapping("/login")
+	public String loginpost() {
+		return "/";
+	}
+	
+	//나의 매칭 목록
+	@GetMapping("/matchinglist")
+	public String aa(HttpSession session, UserVO uo,Model m,noticeBVO vo, ReportVO rv) {
+		
+		double total = 0;
+		int cnt = 0;
+		double avg = 0;
+		
+		
+		
+		uo = (UserVO)session.getAttribute("user");
+		
+		
+		session.setAttribute("user", uo);
+		
+		List<noticeBVO> lo = match_service.select_notice1(uo);
+		
+		m.addAttribute("lo", lo);
 
-			List<noticeBVO> lo2 = match_service.select_notice2(uo);
+		List<noticeBVO> lo2 = match_service.select_notice2(uo);
+	
+		m.addAttribute("lo2", lo2);
 		
-			m.addAttribute("lo2", lo2);
-			
 		
-			return "/user/match_receive";
+		
+		List<RateBVO> bb = ra_service.rate_select1(uo);
+
+		for (RateBVO ba : bb) {
+			total = total + ba.getRating();
+			cnt++;
+		}
+		avg = total / cnt;
+		String aa = String.format("%.1f", avg);
+
+		m.addAttribute("avg", aa);
+		
+	
+		return "/user/matchinglist";
 	}
 	
 
+
 	
 	
 	
 	
+
+	//------------------------------------------------------------- ↑0908
+	
+
+	@PostMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect: /main";
+	}
+
+	// �젙蹂댁젣怨� �룞�쓽�뿉�꽌 �씤�쟻�궗�빆�엯�젰
+	@PostMapping("/signup")
+	public String signup(Model m, HttpServletRequest request) {
+		String resultagr = request.getParameter("resultagr");
+		m.addAttribute("resultagr", resultagr);
 
 	//------------------------------------------------------------- ↑0908
 	@GetMapping("/logout")
@@ -397,4 +445,29 @@ public class UserController {
 		System.out.println("T");
 		return "T";
 	}
+	@GetMapping("/matchlist")
+	public String aa3(HttpSession session, UserVO uo,Model m) {
+		
+		uo = (UserVO)session.getAttribute("user");
+		
+		
+		session.setAttribute("user", uo);
+		
+		
+	
+		return "/user/matchlist";
+	}
+	@PostMapping("/apply_suc")
+	/*--------------------------------------신청하기 누르면 실행-------------------------------------------------*/
+	
+	@ResponseBody
+	public String good(noticeBVO no) {
+		
+		
+		
+		match_service.insert_apply(no);		
+		
+		return "suc";
+	}
+	
 }

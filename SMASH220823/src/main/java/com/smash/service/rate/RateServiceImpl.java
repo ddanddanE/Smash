@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 import com.smash.DAO.rate.RateDAO;
 import com.smash.VO.match.noticeBVO;
 import com.smash.VO.rate.RateBVO;
+<<<<<<< HEAD
+=======
+import com.smash.VO.user.UserVO;
+>>>>>>> 의영
 import com.smash.mapper.RateMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -61,4 +65,12 @@ public class RateServiceImpl implements RateService{
 	public void rate_update2(noticeBVO no) {
 		ra_dao.rate_update2(no);
 	}
+<<<<<<< HEAD
+=======
+	
+	@Override
+	public List<RateBVO> rate_select1(UserVO uo) {
+		return ra_dao.rate_select1(uo);
+	}
+>>>>>>> 의영
 }

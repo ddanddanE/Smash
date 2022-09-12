@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import com.smash.DAO.match.MatchDAO;
 import com.smash.VO.match.noticeBVO;
+<<<<<<< HEAD
+=======
+import com.smash.VO.match.resultBVO;
+>>>>>>> 의영
 import com.smash.VO.user.UserVO;
 import com.smash.mapper.MatchMapper;
 
@@ -42,8 +46,43 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 
+<<<<<<< HEAD
 
 
+=======
+	/*추가*/
+	@Override
+	public void insert_apply(noticeBVO no) {
+		match_dao.insert_apply(no);
+	}
+	@Override
+	public void update_apply(noticeBVO no) {
+		match_dao.update_apply(no);
+	}
+	
+	@Override
+	public void update_apply2(noticeBVO no) {
+		match_dao.update_apply2(no);
+	}
+	
+	@Override
+	public void update_apply3(noticeBVO no) {
+		match_dao.update_apply3(no);
+	}
+	
+	@Override
+	public void update_apply4(noticeBVO no) {
+		match_dao.update_apply4(no);
+	}
+	
+
+	@Override
+	public void insert_result(resultBVO mo) {
+	
+		match_dao.insert_result(mo);
+	}
+	
+>>>>>>> 의영
 	
 	
 	}
