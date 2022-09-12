@@ -178,8 +178,11 @@ function sample7_execDaumPostcode() {
 			document.getElementById("sample7_address").value = addr;
 			document.getElementById("Sport_Address").value = addr + extraAddr + "(" + data.zonecode + " ) ";
 			geocoder.addressSearch(data.address, function(results, status) {
+			document.getElementById('getmap').style.width = "500px";
+			document.getElementById('getmap').style.height = "300px";
 				// 정상적으로 검색이 완료됐으면
 				if (status === daum.maps.services.Status.OK) {
+					
 					var mapContainer = document.getElementById('getmap'), // 지도를 표시할 div
 						mapOption = {
 							center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
@@ -348,3 +351,33 @@ function idchk(){
 	}
 }
 
+function pwchk(){
+	$.ajax({
+		url:"/user/pwChk",
+		type:"POST",
+		data:{
+			"id" : $("#id").val(),
+			"pw" : $("#pwconf").val()
+		},
+		success: function(data){
+			if($("#pwconf").val()=="" && data == "F"){
+				alert("비밀번호를 입력해주세요");
+				$("#pwconf").focus();
+				return;
+			}
+			else if(data == "F"){
+				alert("비밀번호가 일치하지 않습니다.");
+				$("#pwconf").focus();
+				return;
+			}
+			else if(data == "T"){
+				$("#updateform").submit();
+				alert("수정되었습니다.");
+			}
+		},
+		error : function(){
+					alert("오류");
+				}
+	});
+
+}

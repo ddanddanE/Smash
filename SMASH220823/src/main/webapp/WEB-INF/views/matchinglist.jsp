@@ -21,6 +21,7 @@
              <a href="match_receive" class="list-group-item list-group-item-action">신청받은내역</a>
             <a href="reportlist.html" class="list-group-item list-group-item-action">신고받은 내용</a>
             <a href="rate_receive" class="list-group-item list-group-item-action">받은 평점</a>
+            <a href="/user/delete"class="list-group-item list-group-item-action">회원탈퇴</a>
             </div>
 
         </div>
@@ -299,6 +300,10 @@
       alert("결과가 전송되었습니다");
       $('#modalResult').modal('hide');
 
+    }
+    function delete(){
+    	var result = confirm("삭제하시겠습니까?");
+    	console.log(result);
     }
   </script>
 

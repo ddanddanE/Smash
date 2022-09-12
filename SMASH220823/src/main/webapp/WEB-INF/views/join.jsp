@@ -168,7 +168,7 @@
             </div>
 			<input type="hidden" class="" id="Sport_Address" name="user_sport_address" readonly="readonly"><!-- hidden -->
           </div>
-			<div id="getmap" style="width: 500px; height: 300px">
+			<div id="getmap" class="form-group row">
             </div>
             <input type="hidden" id="longitude" name="user_sport_address_x">
             <input type="hidden" id="Latitude" name="user_sport_address_y">
