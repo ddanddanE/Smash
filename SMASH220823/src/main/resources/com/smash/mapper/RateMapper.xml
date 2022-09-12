@@ -24,14 +24,9 @@
 		select userName,rival,rating from rate_table where rival=#{rival}
 	</select>
 	
-<<<<<<< HEAD
-=======
 	<select id="rate_select1" resultType="com.smash.VO.rate.RateBVO">
 		select userName,rival,rating from rate_table where userName=#{user_id}
 	</select>
-	
->>>>>>> 의영
-	
 	
 	<select id="rate_select2" resultType="com.smash.VO.match.noticeBVO">
 		select NOTICE_MSG_USER,NOTICE_MSG_RIVAL from notice_msg_table where NOTICE_MSG_NO=#{NOTICE_MSG_NO}

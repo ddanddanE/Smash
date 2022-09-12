@@ -2,61 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.smash.mapper.MatchMapper">
-	
-	
-	<select id="select_match" resultType="com.smash.VO.match.noticeBVO">
-		select  NOTICE_MSG_USER,NOTICE_MSG_RIVAL from NOTICE_MSG_TABLE where NOTICE_MSG_NO=#{NOTICE_MSG_NO}
+
+
+	<select id="select_match"
+		resultType="com.smash.VO.match.noticeBVO">
+		select NOTICE_MSG_USER,NOTICE_MSG_RIVAL from
+		NOTICE_MSG_TABLE where NOTICE_MSG_NO=#{NOTICE_MSG_NO}
 	</select>
 
-	<select id="select_notice1" resultType="com.smash.VO.match.noticeBVO">
-<<<<<<< HEAD
-		select * FROM NOTICE_MSG_TABLE where NOTICE_MSG_USER=#{user_id} order by NOTICE_MSG_TIME
+	<select id="select_notice1"
+		resultType="com.smash.VO.match.noticeBVO">
+		select * FROM NOTICE_MSG_TABLE where
+		NOTICE_MSG_USER=#{user_id} order by NOTICE_MSG_TIME
 	</select>
-	
-	<select id="select_notice2" resultType="com.smash.VO.match.noticeBVO">
-		select * FROM NOTICE_MSG_TABLE where NOTICE_MSG_RIVAL=#{user_id} order by NOTICE_MSG_TIME
+
+	<select id="select_notice2"
+		resultType="com.smash.VO.match.noticeBVO">
+		select * FROM NOTICE_MSG_TABLE where
+		NOTICE_MSG_USER=#{user_id} order by BOARD_NUM
 	</select>
-	
-	
-=======
-		select * FROM NOTICE_MSG_TABLE where NOTICE_MSG_USER=#{user_id} order by BOARD_NUM
-	</select>
-	
-	<select id="select_notice2" resultType="com.smash.VO.match.noticeBVO">
-		select * FROM NOTICE_MSG_TABLE where NOTICE_MSG_RIVAL=#{user_id} order by BOARD_NUM
-	</select>
-	
-	
+
 	<!-- 신청하기 insert -->
 	<insert id="insert_apply">
-	insert into NOTICE_MSG_TABLE
-	(Board_Num,Board_Title,NOTICE_MSG_Content,NOTICE_MSG_USER,NOTICE_MSG_RIVAL,NOTICE_MSG_PLACE,NOTICE_MSG_TIME)
-	 values
-	 (#{BOARD_NUM},#{BOARD_TITLE},#{NOTICE_MSG_Content},#{NOTICE_MSG_USER},#{NOTICE_MSG_RIVAL},#{NOTICE_MSG_PLACE},#{NOTICE_MSG_TIME})
+		insert into NOTICE_MSG_TABLE
+		(Board_Num,Board_Title,NOTICE_MSG_Content,NOTICE_MSG_USER,NOTICE_MSG_RIVAL,NOTICE_MSG_PLACE,NOTICE_MSG_TIME)
+		values
+		(#{BOARD_NUM},#{BOARD_TITLE},#{NOTICE_MSG_Content},#{NOTICE_MSG_USER},#{NOTICE_MSG_RIVAL},#{NOTICE_MSG_PLACE},#{NOTICE_MSG_TIME})
 	</insert>
-	
+
 	<update id="update_apply">
-	update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='거절' where BOARD_NUM=#{BOARD_NUM} 
+		update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='거절' where
+		BOARD_NUM=#{BOARD_NUM}
 	</update>
-	
+
 	<update id="update_apply2">
-	update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='수락' where BOARD_NUM=#{BOARD_NUM} and NOTICE_MSG_RIVAL=#{NOTICE_MSG_RIVAL}  
+		update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='수락' where
+		BOARD_NUM=#{BOARD_NUM} and NOTICE_MSG_RIVAL=#{NOTICE_MSG_RIVAL}
 	</update>
-	
+
 	<update id="update_apply3">
-	update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='거절' where BOARD_NUM=#{BOARD_NUM} and NOTICE_MSG_RIVAL=#{NOTICE_MSG_RIVAL}  
+		update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='거절' where
+		BOARD_NUM=#{BOARD_NUM} and NOTICE_MSG_RIVAL=#{NOTICE_MSG_RIVAL}
 	</update>
-	
+
 	<update id="update_apply4">
-	update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='완료' where NOTICE_MSG_NO=#{NOTICE_MSG_NO}  
+		update NOTICE_MSG_TABLE set NOTICE_MSG_STATUS='완료' where
+		NOTICE_MSG_NO=#{NOTICE_MSG_NO}
 	</update>
-	
-	
+
+
 	<insert id="insert_result">
-	insert into result_table(userName,rivalName,result) values(#{userName},#{rivalName},#{result}) 
+		insert into result_table(userName,rivalName,result)
+		values(#{userName},#{rivalName},#{result})
 	</insert>
-	
-	
->>>>>>> 의영
-	
 </mapper>

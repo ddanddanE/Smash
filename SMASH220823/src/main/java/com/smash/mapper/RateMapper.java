@@ -4,11 +4,7 @@ import java.util.List;
 
 import com.smash.VO.match.noticeBVO;
 import com.smash.VO.rate.RateBVO;
-<<<<<<< HEAD
-=======
 import com.smash.VO.user.UserVO;
->>>>>>> 의영
-
 
 public interface RateMapper {
 
@@ -27,10 +23,6 @@ public interface RateMapper {
 	public void rate_update(noticeBVO no);
 
 	public void rate_update2(noticeBVO no);
-<<<<<<< HEAD
-=======
 	
 	public List<RateBVO> rate_select1(UserVO uo);/* 나의 정보(평점) 출력 */
->>>>>>> 의영
-
 }
