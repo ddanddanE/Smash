@@ -1,5 +1,7 @@
 package com.smash.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -55,6 +57,12 @@ public class BoardController {
 		return "redirect:/matchlist";
 	}
 	
+	@RequestMapping("/boardlist")
+	public String boardlist(HttpSession session, Model model) throws Exception{
+		List<BoardVO> blist = bservice.List_board_main(null);
+		model.addAttribute("list", blist);
+		return "board/boardlist";
+	}
 	
 	
 	
