@@ -45,6 +45,9 @@ public class BoardController {
 		
 		session.setAttribute("id", vo.getUser_id());
 		session.setAttribute("adress", vo.getUser_sport_address());
+		session.setAttribute("bno", bvo.getBoard_Num());
+		session.setAttribute("bdate", bvo.getBoard_Date());
+		
 		
 		
 		bservice.board_insert(bvo);
