@@ -7,17 +7,16 @@ import com.smash.VO.board.BoardVO;
 
 
 public interface BoardDAO {
-
-	// �Խñ� �ۼ�
-	public void write(BoardVO boardVO) throws Exception;
 	
-	// �Խù� ��� ��ȸ
-	public List<BoardVO> list(SearchCriteria scri) throws Exception;
+	//리스트 총 목록 보기
+	public List<BoardVO> List_board_main(BoardVO vo) throws Exception;
 
-	// �Խù� �� ����
-	public int listCount(SearchCriteria scri) throws Exception;
+	//자세히 보기
+	public List<BoardVO> select_board_sub(BoardVO vo) throws Exception;
 	
-	// �Խù� ��ȸ
-	public BoardVO read(int bno) throws Exception;
+	//글 쓰기
+	public void board_insert(BoardVO vo) throws Exception;
+	
+	
 	
 }

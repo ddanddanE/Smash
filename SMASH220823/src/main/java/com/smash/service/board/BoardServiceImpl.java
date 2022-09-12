@@ -10,44 +10,34 @@ import org.springframework.stereotype.Service;
 import com.smash.DAO.board.BoardDAO;
 import com.smash.VO.board.BoardVO;
 
-
-
-
-
+import lombok.RequiredArgsConstructor;
 
 
 @Service
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
 
-	@Inject
-	private BoardDAO dao;
-	
-	// 게시글 작성
-	@Override
-	public void write(BoardVO boardVO) throws Exception {
-		dao.write(boardVO);
-	}
+	private final BoardDAO BDao;
 
-	// 게시물 목록 조회
 	@Override
-	public List<BoardVO> list(SearchCriteria scri) throws Exception {
-
-		return dao.list(scri);
-	}
-	
-	// 게시물 총 갯수
-	@Override
-	public int listCount(SearchCriteria scri) throws Exception {
+	public List<BoardVO> List_board_main(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.listCount(scri);
+		return BDao.List_board_main(vo);
 	}
 
-	// 게시물 조회
 	@Override
-	public BoardVO read(int bno) throws Exception {
-
-		return dao.read(bno);
+	public List<BoardVO> select_board_sub(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return BDao.select_board_sub(vo);
 	}
+
+	@Override
+	public void board_insert(BoardVO vo) throws Exception {
+		BDao.board_insert(vo);
+		
+	}
+	
+	
 
 
 }
