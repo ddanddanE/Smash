@@ -2,7 +2,9 @@ package com.smash.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -28,22 +30,31 @@ public class UserController {
 
 	private final UserService uService;
 	private final MatchService match_service;
-
-
-
-	
+	Cookie idCookie;
 	
 	//--------------------------------------------------↓0908
 	@PostMapping("/logincheck")
-	public String logincheck(HttpSession session, @RequestParam("User_Id") String User_Id, @RequestParam("User_Pw") String User_Pw) {
+	public String logincheck(HttpSession session, HttpServletRequest request,UserVO uvo,HttpServletResponse response) {
+		String User_Id = request.getParameter("User_Id");
+		String User_Pw = request.getParameter("User_Pw");
 		
-		UserVO vo = new UserVO();
-		vo.setUser_id(User_Id);
-		vo.setUser_pw(User_Pw);
+		uvo.setUser_id(User_Id);
+		uvo.setUser_pw(User_Pw);
 		
-		session.setAttribute("user", uService.login(vo));
+		uvo = uService.login(uvo);
 		
-		return "/user/main";
+		session.setAttribute("user", uvo);
+		
+		String ck = request.getParameter("idcookie");
+		
+		if(ck != null ) {
+			idCookie = new Cookie("idCookie",User_Id);
+			response.addCookie(idCookie);
+		}else {
+			
+		}
+		
+		return "redirect: /";
 	}
 	
 	@PostMapping("/login")
@@ -74,8 +85,7 @@ public class UserController {
 	//회원정보
 	@GetMapping("/memberinfo")
 	public void memberinfo() {
-		
-	}
+ 	}
 	
 	//나의 신청내역
 	@GetMapping("matchdetail")
@@ -88,20 +98,16 @@ public class UserController {
 	public void match_receive() {
 		
 	}
-	
-
-	
-	
-	
-	
-
 	//------------------------------------------------------------- ↑0908
-	
-
-	@PostMapping("/logout")
-	public String logout(HttpSession session) {
+	@GetMapping("/logout")
+	public String logoutget(HttpSession session) {
 		session.invalidate();
-		return "redirect: /main";
+		return "redirect: /";
+	}
+	@PostMapping("/logout")
+	public String logoutpost(HttpSession session) {
+		session.invalidate();
+		return "redirect: /";
 	}
 
 	// 嚥≪뮄�젃占쎌뵥 占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎈툡占쎌뵠占쎈탵 �뜮袁⑥쓰 燁살꼵�� 筌띿쉸�몵筌롳옙 筌롫뗄�뵥 占쎈툡占쎈빍筌롳옙
@@ -113,33 +119,13 @@ public class UserController {
 		return "/user/agree";
 	}
 	
-	
-	
-	// 占쎌젟癰귣똻�젫�⑨옙 占쎈짗占쎌벥占쎈퓠占쎄퐣 占쎌뵥占쎌읅占쎄텢占쎈퉮占쎌뿯占쎌젾
-	@PostMapping("/signup")
-	public String signup(Model m, HttpServletRequest request) {
-		String resultagr = request.getParameter("resultagr");
-		m.addAttribute("resultagr", resultagr);
-
-		return "/user/signup";
-	}
-
 	@PostMapping("/success")
 	public String complete(UserVO uvo, HttpServletRequest request) {
 		String User_id = request.getParameter("user_id");
-		int User_agree = Integer.parseInt(request.getParameter("user_agree"));
 		String User_Sport_Address = request.getParameter("user_sport_address");
 
-		uvo.setUser_id(User_id.toLowerCase());
-		uvo.setUser_agree(User_agree);
-		System.out.println(uvo.getUser_id());
-
-		if (User_Sport_Address.toLowerCase().equals("notsubmit")) {
-			uService.insert_no(uvo);
-		} else {
-			uService.insert(uvo);
-		}
-
+		uService.insert(uvo);	
+		
 		return "/user/success";
 	}
 
@@ -149,20 +135,24 @@ public class UserController {
 	}
 
 	@PostMapping("/findIDresult")
+	@ResponseBody
 	public String findIDresult(UserVO uvo, HttpServletRequest request, Model m) {
-		String user_name = request.getParameter("User_name");
-		String user_resinum = request.getParameter("User_resi");
-		String user_phonenum = request.getParameter("User_PhoneNum");
-
-		uvo.setUser_id(user_name);
-		uvo.setUser_resinum(user_resinum);
-		uvo.setUser_phonenum(user_phonenum);
+		
+		String user_name = request.getParameter("name");
+		String user_email = request.getParameter("email");
+		
+		uvo.setUser_name(user_name);
+		uvo.setUser_email(user_email);
 
 		uvo = uService.findid(uvo);
-
-		m.addAttribute("user", uvo);
-
-		return "/user/findIDresult";
+		
+		if(uvo==null) {
+			return "1";
+		}else {
+			m.addAttribute("user", uvo);
+			return uvo.getUser_id();
+		}
+		
 	}
 
 	@GetMapping("/findPW")
@@ -171,24 +161,24 @@ public class UserController {
 	}
 
 	@PostMapping("/findPWresult")
+	@ResponseBody
 	public String findPWresult(UserVO uvo, HttpServletRequest request, Model m) {
-		String user_id = request.getParameter("User_id").toLowerCase();
-		String user_name = request.getParameter("User_name");
-		String user_resinum = request.getParameter("User_resi");
-		String user_phonenum = request.getParameter("User_PhoneNum");
-
+		String user_id = request.getParameter("id").toLowerCase();
+		String user_name = request.getParameter("name");
+		String user_email = request.getParameter("email");
+		
 		uvo.setUser_id(user_id);
 		uvo.setUser_name(user_name);
-		uvo.setUser_resinum(user_resinum);
-		uvo.setUser_phonenum(user_phonenum);
+		uvo.setUser_email(user_email);
 
 		uvo = uService.findpw(uvo);
-
-		System.out.println(uvo.getUser_pw());
-
-		m.addAttribute("user", uvo);
-
-		return "/user/findPWresult";
+		
+		if(uvo==null) {
+			return "1";
+		}else {
+			m.addAttribute("user", uvo);
+			return uvo.getUser_pw();
+		}
 	}
 
 	@PostMapping("/update")
@@ -251,36 +241,34 @@ public class UserController {
 		
 		uvo = (UserVO) session.getAttribute("user");
 		
-		String name = request.getParameter("user_name");
+		String pw = request.getParameter("user_pw");
 		String email = request.getParameter("user_email");
 		String phoneNum = request.getParameter("user_phonenum");
-		String birth = request.getParameter("user_birthday");
 		String address = request.getParameter("user_address");
 		String sport_Address = request.getParameter("user_sport_address");
 		
-		uvo.setUser_name(name);
 		uvo.setUser_email(email);
 		uvo.setUser_phonenum(phoneNum);
-		uvo.setUser_birthday(birth);
 		uvo.setUser_address(address);
 		uvo.setUser_sport_address(sport_Address);
 		
 		uService.update(uvo);
+		session.invalidate();
 		
-		return "/user/test";
+		return "redirect: /";
 	}
-	@PostMapping("/delete")
+	@GetMapping("/delete")
 	public String delete(UserVO uvo, HttpSession session) {
 		uvo = (UserVO) session.getAttribute("user");
 		
 		if(uvo == null) {
-			return "/user/test";
+			return "/matchinglist";
 		}
 		else if(uvo != null) {
 			uService.delete(uvo);
 			session.invalidate();
 			
-			return "redirect: /user/login";
+			return "redirect: /";
 		}
 		
 		return null;
@@ -302,6 +290,7 @@ public class UserController {
 			System.out.println("F");
 			return "F";
 		}
+		uService.update(uvo);
 		System.out.println("T");
 		return "T";
 	}
