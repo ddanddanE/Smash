@@ -8,44 +8,35 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.smash.VO.board.BoardVO;
+import com.smash.mapper.BoardMapper;
+
+import lombok.RequiredArgsConstructor;
 
 
 
 @Repository
+@RequiredArgsConstructor
 public class BoardDAOImpl implements BoardDAO {
 
-	@Inject
-	private SqlSession sqlSession;
+	private final BoardMapper BMapper;
+
 	
-	// �Խñ� �ۼ�
 	@Override
-	public void write(BoardVO boardVO) throws Exception {
-		sqlSession.insert("boardMapper.insert", boardVO);
+	public List<BoardVO> List_board_main(BoardVO vo) throws Exception {
+		return BMapper.List_board_main(vo);
+	}
+
+	@Override
+	public List<BoardVO> select_board_sub(BoardVO vo) throws Exception {
+		return BMapper.select_board_sub(vo);
+	}
+
+	@Override
+	public void board_insert(BoardVO vo) throws Exception {
+		BMapper.board_insert(vo);
 		
 	}
 
-	// �Խù� ��� ��ȸ
-	@Override
-	public List<BoardVO> list(SearchCriteria scri) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("boardMapper.listPage", scri);
-	}
-	
-	// �Խù� �� ����
-	@Override
-	public int listCount(SearchCriteria scri) throws Exception {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("boardMapper.listCount", scri);
-	}
-
-	
-	
-	// �Խù� ��ȸ
-	@Override
-	public BoardVO read(int bno) throws Exception {
-		
-		return sqlSession.selectOne("boardMapper.read", bno);
-	}
 
 	
 }

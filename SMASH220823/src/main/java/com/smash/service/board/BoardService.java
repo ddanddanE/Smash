@@ -8,17 +8,14 @@ import com.smash.VO.board.BoardVO;
 
 public interface BoardService {
 
-		// 게시글 작성
-		public void write(BoardVO boardVO) throws Exception;
+		//리스트 총 목록 보기
+		public List<BoardVO> List_board_main(BoardVO vo) throws Exception;
 
-		// 게시물 목록 조회
-		public List<BoardVO> list(SearchCriteria scri) throws Exception;
+		//자세히 보기
+		public List<BoardVO> select_board_sub(BoardVO vo) throws Exception;
 		
-		// 게시물 총 갯수
-		public int listCount(SearchCriteria scri) throws Exception;
-		
-		// 게시물 조회
-		public BoardVO read(int Board_Num) throws Exception;
+		//글 쓰기
+		public void board_insert(BoardVO vo) throws Exception;
 		
 	
 }

@@ -1,76 +1,55 @@
 package com.smash.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.smash.VO.board.BoardVO;
+import com.smash.VO.user.UserVO;
 import com.smash.service.board.BoardService;
+import com.smash.service.report.ReportService;
 
-
-
+import lombok.RequiredArgsConstructor;
 
 
 @Controller
+@RequiredArgsConstructor
 @RequestMapping("/board/*")
 public class BoardController {
+	
+	private final BoardService bservice;
 
-private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	
-	@Inject
-	BoardService service;
-	
-	// 게시판 글 작성 화면
-	@RequestMapping(value = "/writeView", method = RequestMethod.GET)
-	public void writeView() throws Exception{
-		logger.info("writeView");
+	@GetMapping("/Board_Write")
+	public void Board_Write(HttpSession session, BoardVO bvo) {
+		UserVO vo = (UserVO) session.getAttribute("user");
 		
+		
+		session.setAttribute("id", vo.getUser_id());
+		session.setAttribute("adress", vo.getUser_sport_address());
 	}
 	
-	// 게시판 글 작성
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
-	public String write(BoardVO boardVO) throws Exception{
-		logger.info("write");
+	@PostMapping("/Board_Write")
+	public String Board_Write1(BoardVO bvo, HttpSession session) throws Exception {
 		
-		service.write(boardVO);
+		UserVO vo = (UserVO) session.getAttribute("user");
+
 		
-		return "redirect:/board/list";
-	}
-	
-	// 게시판 목록 조회
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception{
-		logger.info("list");
-		
-		model.addAttribute("list", service.list(scri));
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(service.listCount(scri));
-		
-		model.addAttribute("pageMaker", pageMaker);
-		
-		return "board/list";
-		
-	}
-	
-	// 게시판 조회
-	@RequestMapping(value = "/readView", method = RequestMethod.GET)
-	public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
-		logger.info("read");
-		
-		model.addAttribute("read", service.read(boardVO.getBno()));
-		model.addAttribute("scri", scri);
+		session.setAttribute("id", vo.getUser_id());
+		session.setAttribute("adress", vo.getUser_sport_address());
 		
 		
+		bservice.board_insert(bvo);
 		
-		return "board/readView";
+		return "redirect:/matchlist";
 	}
 	
 	
