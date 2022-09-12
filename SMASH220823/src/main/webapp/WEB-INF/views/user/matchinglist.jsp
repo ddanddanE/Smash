@@ -4,6 +4,73 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="../includes/header.jsp"%>
 
+
+<style>
+<!--
+#myform fieldset {
+   display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+    direction: rtl; /* 이모지 순서 반전 */
+    border: 0; /* 필드셋 테두리 제거 */
+    margin-left: 100px;
+}
+
+
+#myform input[type=radio] {
+   display: none;
+   margin-left: 100px;
+}
+
+#myform label {
+   font-size: 3em;
+   color: transparent;
+   text-shadow: 0 0 0 #f0f0f0;
+}
+
+
+
+#myform input[type=radio]:checked ~ label {
+   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+.modal-body button {
+   margin-left: 180px;
+}
+#ratesend{
+	margin-left: 180px;
+}
+
+#myform #span {
+   margin-left: 170px;
+}
+
+#myform .dd {
+
+   margin-left: 60px;
+}
+
+textarea {
+         width: 65%;
+         height: 150px;
+         padding: 10px;
+         box-sizing: border-box;
+         border: solid 2px #1E90FF;
+         border-radius: 5px;
+         font-size: 16px;
+         resize: both;
+         
+      }
+
+#myform label:hover {
+   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#myform label:hover ~ label {
+   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+-->
+</style>
+
+
   <main>
     <section class="container">
       <div class="row mb-4">
@@ -32,96 +99,87 @@
                 
                 <tr class="table-primary text-center">
                   <th style="width: 80px;">번호</th>
-                  <th style="width: 80px;">방장</th>
-                  <th style="width: 80px;">참가자</th>
-                  <th style="width: 80px;">경기장(장소)</th>
+                  <th style="width: 80px;">상대</th>
+                  <th style="width: 150px;">경기장(장소)</th>
                   <th style="width: 150px;">날짜(대전일)</th>
-                  <th style="width: 200px;">상태(현재진행상황)</th>
-  	              <th style="width: 200px;">신고/평점 ${id }</th>
+  	              <th style="width: 200px;">신고/평점 </th>
                 </tr>
                 
-                <tr>
-                  <td class="text-center">1</td>
-                  <td><a href="#">길동</a></td>
-                  <td><a href="#">꺼정</a></td>
-                  <td><a href="#">종록테니스장</a></td>
-  	              <td class="text-center">2020-09-05</td>
-                  <td><a href="#">대기</a></td>
-                  <td class="text-center">
-                    <button class="btn btn-secondary" onclick="popuprate('81','user10','userid1','sano1207')">평점주기</button>
-                  </td>
-                 
-                </tr>
+                
                 
                 
              <c:forEach items="${lo  }" var="bo">
+             <c:if test="${bo.NOTICE_MSG_STATUS.equals('완료') }">
 					<tr class="odd gradeX">
-					<td>1</td>
-						<td><input type="hidden" value="${user.user_id }"
+					<td>1<input type="hidden" value="${user.user_id }"
 							name="user.user_id" /> <input type="hidden"
-							value="${bo.NOTICE_MSG_NO}" name="NOTICE_MSG_NO" /> 
-						<c:out value="${bo.NOTICE_MSG_USER}" /></td>
+							value="${bo.NOTICE_MSG_NO}" name="NOTICE_MSG_NO" /> </td>
+						
 						<td><c:out value="${bo.NOTICE_MSG_RIVAL}" /></td>
 						<td><c:out value="${bo.NOTICE_MSG_PLACE}" /></td>
 						<td><fmt:formatDate value="${bo.NOTICE_MSG_TIME }"
 								pattern="yy-MM-dd" /></td>
-						<td><c:out value="${bo.NOTICE_MSG_STATUS}" /></td>
 						
 						<!-- 평점버튼 -->
 						<td>
-						<c:if test="${bo.NOTICE_MSG_URATE==0 &&  bo.NOTICE_MSG_STATUS.equals('완료') }">
+						<c:choose>
+						<c:when test="${bo.NOTICE_MSG_URATE==0}">
 
 							<button class="btn btn-secondary btn-sm mr-1 rounded-pill" type="button"
 									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">평점주기</button>
 								
-							</c:if>
-							 <c:if test="${bo.NOTICE_MSG_URATE==1 }">
-								<input type="button" class="button2" value="평점주기"
+								
+							<button class="btn btn-danger btn-sm mr-1 rounded-pill" type="button" onclick="popupReport('${bo.NOTICE_MSG_NO}','${bo.NOTICE_MSG_RIVAL}')">신고하기</button>
+								
+							</c:when>
+							 <c:otherwise>
+								<input type="button" class="btn btn-secondary btn-sm mr-1 rounded-pill" value="평점주기"
 									disabled="disabled" />
-							</c:if>
-		
+								<input type="button" class="btn btn-danger btn-sm mr-1 rounded-pill" value="신고하기"
+									disabled="disabled" />
 							
 							<!-- 신고버튼 -->
-						
-						<c:if test="${bo.NOTICE_MSG_URATE==0 &&  bo.NOTICE_MSG_STATUS.equals('완료') }">
-
-							<button class="btn btn-danger btn-sm mr-1 rounded-pill" type="button" onclick="popupReport('${bo.NOTICE_MSG_NO}','${bo.NOTICE_MSG_RIVAL}')">신고하기</button>
-									
-											
+								</c:otherwise>
+									</c:choose>
+										</td>
+							</tr>
+					</c:if>			
 								
-							</c:if>
-							 <c:if test="${bo.NOTICE_MSG_URATE==1 }">
-								<input type="button" class="button2" value="신고하기"
-									disabled="disabled" />
-							</c:if>
-							</td>
+
 							
-					</tr>
+								
+							
+							
 				</c:forEach>
 				
 				
 				<c:forEach items="${lo2  }" var="bb">
+				<c:if test="${bb.NOTICE_MSG_STATUS.equals('완료') }">
 					<tr class="odd gradeX">
 						<td>1</td>
 						<td><c:out value="${bb.NOTICE_MSG_USER}" /></td>
-						<td><c:out value="${bb.NOTICE_MSG_RIVAL}" /></td>
 						<td><c:out value="${bb.NOTICE_MSG_PLACE}" /></td>
 						<td><fmt:formatDate value="${bb.NOTICE_MSG_TIME }"
 								pattern="yy-MM-dd" /></td>
-						<td><c:out value="${bb.NOTICE_MSG_STATUS}" /></td>
-						<td><c:if test="${bb.NOTICE_MSG_RRATE==0 && bb.NOTICE_MSG_STATUS.equals('완료') }">
+						<td>
+						<c:choose>
+						<c:when test="${bb.NOTICE_MSG_RRATE==0}">
 								
-								<button class="btn btn-secondary" type="button"
+								<button class="btn btn-secondary btn-sm mr-1 rounded-pill" type="button"
 									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">평점주기</button>
-								<button type="button" class="button3"
+								<button type="button" class="btn btn-danger btn-sm mr-1 rounded-pill"
 									onclick="popupReport1(2,'user3')">신고하기</button>
-							</c:if> <c:if test="${bb.NOTICE_MSG_RRATE==1}">
-								<input type="button" class="button2" value="평점주기"
+							</c:when>
+							 <c:otherwise>
+								<input type="button" class="btn btn-secondary btn-sm mr-1 rounded-pill" value="평점주기"
 									disabled="disabled" />
-								<button type="button" class="button3"
+								<button type="button" class="btn btn-danger btn-sm mr-1 rounded-pill"
 									onclick="popupReport1(2,'user3')">신고하기</button>
-							</c:if></td>
+									</c:otherwise>
+									</c:choose>
+							</td>
 					</tr>
+					</c:if>
 				</c:forEach>
              
              
@@ -322,7 +380,7 @@
 						<input type="checkbox" id="che" name="che" onclick="check()" /></div> </br>
 						
 					</form>
-						<input type="button" value="보내기" class="button" onclick="go()"/>
+						<input type="button" id="ratesend" value="보내기" class="btn btn-secondary btn-sm mr-1 rounded-pill" onclick="go()"/>
 				</div>
 				<div class="modal-footer"></div>
 			</div>
