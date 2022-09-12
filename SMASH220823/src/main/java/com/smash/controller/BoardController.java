@@ -21,22 +21,26 @@ import com.smash.service.board.BoardService;
 import com.smash.service.report.ReportService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 
 @Controller
 @RequiredArgsConstructor
+@Log4j
 @RequestMapping("/board/*")
 public class BoardController {
 	
 	private final BoardService bservice;
 
 	@GetMapping("/Board_Write")
-	public void Board_Write(HttpSession session, BoardVO bvo) {
+	public String Board_Write(HttpSession session, BoardVO bvo) {
 		UserVO vo = (UserVO) session.getAttribute("user");
 		
 		
 		session.setAttribute("id", vo.getUser_id());
 		session.setAttribute("adress", vo.getUser_sport_address());
+		
+		return "board/Board_Write";
 	}
 	
 	@PostMapping("/Board_Write")
