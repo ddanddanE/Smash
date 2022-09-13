@@ -187,11 +187,6 @@ public class UserController {
 		return "redirect: /";
 	}
 
-	@PostMapping("/logout")
-	public String logoutpost(HttpSession session) {
-		session.invalidate();
-		return "redirect: /";
-	}
 
 	// 嚥≪뮄�젃占쎌뵥 占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎈툡占쎌뵠占쎈탵 �뜮袁⑥쓰 燁살꼵�� 筌띿쉸�몵筌롳옙 筌롫뗄�뵥 占쎈툡占쎈빍筌롳옙
 	// 占쎈뼄占쎈뻻 占쎈연疫뀐옙 占쎈읂占쎌뵠筌욑옙

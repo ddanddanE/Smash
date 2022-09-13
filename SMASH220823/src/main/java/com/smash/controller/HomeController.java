@@ -24,11 +24,8 @@ import com.smash.VO.report.ReportVO;
 import com.smash.VO.user.UserVO;
 import com.smash.service.match.MatchService;
 import com.smash.service.rate.RateService;
-import com.smash.service.user.UserService;
 
 import lombok.RequiredArgsConstructor;
-
-import com.smash.VO.user.UserVO;
 
 /**
  * Handles requests for the application home page.
@@ -162,11 +159,6 @@ public class HomeController {
 
 	}
 
-	@GetMapping("/memberinfo")
-	public void memberinfo() {
-
-	}
-
 	@GetMapping("/myPage")
 	public void myPage() {
 
@@ -184,14 +176,10 @@ public class HomeController {
 
 	}
 
-	@GetMapping("/user/memberinfo")
-	public void memberinfo2() {
-
-	}
 
 	/*-------------------- 수정-----------------------------*/
 
-	@GetMapping("/user/matchdetail")
+	@GetMapping("/user/matchdetail1")
 	public String matchdetail2(HttpSession session, UserVO uo, Model m, noticeBVO vo, ReportVO rv) {
 
 		double total = 0;

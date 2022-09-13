@@ -79,25 +79,24 @@ public class AdminController {
 		m.addAttribute("list", list);
 		return "admin/user_Report";
 	}
+
 	@GetMapping("/Sales")
 	public String sales() {
 		return "admin/Sales";
 	}
+	
 	@GetMapping("/manage_adminAcc")
 	public String manage_adminacc() {
 		return "admin/manage_adminAcc";
 	}
+
 	@GetMapping("/notice")
 	public String notice() {
 		return "admin/notice";
 	}
+
 	@GetMapping("/depart_Info")
 	public String depart_info() {
 		return "admin/depart_info";
 	}
-	
-	
-	
-	
-	
 }
