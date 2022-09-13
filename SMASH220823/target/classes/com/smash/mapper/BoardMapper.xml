@@ -15,15 +15,16 @@
 	</select>
 	
 	<insert id="board_insert">
-		insert into Board_Table(Board_Num, Board_Sport_Address,
-								Board_Sport_Address_X,Board_Sport_Address_Y, 
-								Board_Title, Board_ReservationDate, Board_ReservationTime,
+		insert into Board_Table(Board_Sport_Address,
+								Board_Sport_Address_X,Board_Sport_Address_Y,
+								Board_Sport_Address_IMG, Board_Title,
+								Board_ReservationDate, Board_ReservationTime,
 								Board_Content, Board_TotalPeople,
-								Board_Category, Board_Date, Board_Id) 
-					values(#{Board_Num},#{Board_Sport_Address},#{Board_Sport_Address_X},
-						#{Board_Sport_Address_Y},#{Board_Title},#{Board_ReservationDate},#{Board_ReservationTime},
-						#{Board_Content},#{Board_TotalPeople},
-						#{Board_Category},#{Board_Date}, #{Board_Id})
+								Board_Category, Board_Id) 
+					values(#{Board_Sport_Address},#{Board_Sport_Address_X},
+						#{Board_Sport_Address_Y},#{Board_Sport_Address_IMG},#{Board_Title},#{Board_ReservationDate},
+						#{Board_ReservationTime},#{Board_Content},
+						#{Board_TotalPeople},#{Board_Category}, #{Board_Id})
 	</insert>
 	
 	

@@ -9,8 +9,8 @@ public class BoardVO {
 	
 	private int Board_Num;
 	private String Board_Sport_Address;
-	private double Board_Sport_Address_X;
-	private double Board_Sport_Address_Y;
+	private float Board_Sport_Address_X;
+	private float Board_Sport_Address_Y;
 	private String Board_Sport_Address_IMG;
 	private String Board_Title;
 	private Date Board_ReservationDate;
