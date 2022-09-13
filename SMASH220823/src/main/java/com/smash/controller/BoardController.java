@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smash.VO.board.BoardVO;
 import com.smash.VO.user.UserVO;
@@ -40,6 +41,10 @@ public class BoardController {
 		session.setAttribute("id", vo.getUser_id());
 		session.setAttribute("adress", vo.getUser_sport_address());
 		
+		/*session.setAttribute("adressX", vo.getUser_SPORT_ADDRESS_X());
+		session.setAttribute("adressY", vo.getUser_SPORT_ADDRESS_Y());*/
+		
+		
 		return "board/Board_Write";
 	}
 	
@@ -56,16 +61,25 @@ public class BoardController {
 		
 		
 		
+		
 		bservice.board_insert(bvo);
 		
 		return "redirect:/matchlist";
 	}
 	
-	@RequestMapping("/boardlist")
+	@GetMapping("/boardlist")
 	public String boardlist(HttpSession session, Model model) throws Exception{
 		List<BoardVO> blist = bservice.List_board_main(null);
 		model.addAttribute("list", blist);
 		return "board/boardlist";
+	}
+	
+	@GetMapping("/boardDetail")
+	public String detail(@RequestParam int Board_Num, HttpSession session, Model model) throws Exception{
+		BoardVO bvo = bservice.Detail_Board(Board_Num);
+		model.addAttribute("detail", bvo);
+		return "board/boardDetail";
+		
 	}
 	
 	

@@ -27,8 +27,8 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> select_board_sub(BoardVO vo) throws Exception {
-		return BMapper.select_board_sub(vo);
+	public BoardVO Detail_Board(int Board_Num) throws Exception {
+		return BMapper.Detail_Board(Board_Num);
 	}
 
 	@Override

@@ -5,18 +5,21 @@
 	
 	
 	<select id="List_board_main" resultType="com.smash.VO.board.BoardVO">
-		select Board_Num, Board_Title, Board_Sport_Address, Board_ReservationDate  from Board_Table order by Board_Num desc
+		select Board_Sport_Address_IMG, Board_Title, Board_ReservationDate, Board_Sport_Address, Board_Category 
+				from Board_Table order by Board_Num desc
 	</select>
 
-	<select id="select_board_sub" resultType="com.smash.VO.board.BoardVO">
+	<select id="Detail_Board" resultType="com.smash.VO.board.BoardVO">
 		select Board_Sport_Address_X, Board_Sport_Address_Y, Board_Sport_Address_IMG,
 			Board_Title, from Board_Table where Board_Num=#{Board_Num}
 	</select>
 	
 	<insert id="board_insert">
-		insert into Board_Table(Board_Num, Board_Sport_Address, Board_Sport_Address_X, Board_Sport_Address_Y, 
+		insert into Board_Table(Board_Num, Board_Sport_Address,
+								Board_Sport_Address_X,Board_Sport_Address_Y, 
 								Board_Title, Board_ReservationDate, Board_ReservationTime,
-								Board_Content, Board_TotalPeople, Board_Category, Board_Date, Board_Id) 
+								Board_Content, Board_TotalPeople,
+								Board_Category, Board_Date, Board_Id) 
 					values(#{Board_Num},#{Board_Sport_Address},#{Board_Sport_Address_X},
 						#{Board_Sport_Address_Y},#{Board_Title},#{Board_ReservationDate},#{Board_ReservationTime},
 						#{Board_Content},#{Board_TotalPeople},

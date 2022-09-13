@@ -7,7 +7,7 @@ import com.smash.VO.board.BoardVO;
 public interface BoardMapper {
 	public List<BoardVO> List_board_main(BoardVO vo);
 	
-	public List<BoardVO> select_board_sub(BoardVO vo);
+	public BoardVO Detail_Board(int Board_Num);
 	
 	public List<BoardVO> board_insert(BoardVO vo);
 }

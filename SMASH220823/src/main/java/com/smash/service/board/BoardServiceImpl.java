@@ -26,9 +26,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> select_board_sub(BoardVO vo) throws Exception {
+	public BoardVO Detail_Board(int Board_Num) throws Exception {
 		// TODO Auto-generated method stub
-		return BDao.select_board_sub(vo);
+		return BDao.Detail_Board(Board_Num);
 	}
 
 	@Override

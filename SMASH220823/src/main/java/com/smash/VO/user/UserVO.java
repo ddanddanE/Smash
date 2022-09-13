@@ -20,5 +20,7 @@ public class UserVO {
 	private int user_lose;
 	private String user_signDate;
 	
+	/*	private float  User_SPORT_ADDRESS_X;
+	private float  User_SPORT_ADDRESS_Y;*/
 	
 }
