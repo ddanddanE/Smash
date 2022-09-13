@@ -21,4 +21,9 @@ public class BoardVO {
 	private Date Board_Date;
 	private String Board_Id;
 	
+	
+	
+	
+	
+	
 }

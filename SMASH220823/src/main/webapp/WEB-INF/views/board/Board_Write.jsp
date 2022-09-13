@@ -103,8 +103,6 @@ table.type03 td {
 				<th>Board_Content(매칭 내용)</th>
 				<td><textarea style="width : 100%; height : 200px;" name="Board_Content"></textarea></td>
 			</tr>
-				<input type="hidden" name="Board_Num" value="${sessionScope.bno }">
-				<input type="hidden" name="Board_Date" value="${sessionScope.bdate }">
 		</table>
 		<button type="submit">완료</button>
 	</form>

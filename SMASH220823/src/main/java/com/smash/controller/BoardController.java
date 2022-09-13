@@ -5,8 +5,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +25,6 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequiredArgsConstructor
-@Log4j
 @RequestMapping("/board/*")
 public class BoardController {
 	
@@ -56,21 +53,19 @@ public class BoardController {
 		
 		session.setAttribute("id", vo.getUser_id());
 		session.setAttribute("adress", vo.getUser_sport_address());
-		session.setAttribute("bno", bvo.getBoard_Num());
-		session.setAttribute("bdate", bvo.getBoard_Date());
-		
-		
-		
 		
 		bservice.board_insert(bvo);
 		
 		return "redirect:/matchlist";
 	}
 	
-	@GetMapping("/boardlist")
-	public String boardlist(HttpSession session, Model model) throws Exception{
-		List<BoardVO> blist = bservice.List_board_main(null);
-		model.addAttribute("list", blist);
+	@RequestMapping("/boardlist")
+	public String boardlist(Model model) throws Exception{
+		
+		List<BoardVO> blist = bservice.List_board_main();
+		
+		model.addAttribute("blist", blist);
+		
 		return "board/boardlist";
 	}
 	

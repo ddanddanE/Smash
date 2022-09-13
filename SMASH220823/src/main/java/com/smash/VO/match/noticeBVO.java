@@ -20,5 +20,7 @@ public class noticeBVO {
 	private int NOTICE_MSG_URATE;
 	private int NOTICE_MSG_RRATE;
 	
+
+	
 	
 }

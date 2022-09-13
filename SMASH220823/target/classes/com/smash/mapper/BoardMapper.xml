@@ -5,7 +5,7 @@
 	
 	
 	<select id="List_board_main" resultType="com.smash.VO.board.BoardVO">
-		select Board_Sport_Address_IMG, Board_Title, Board_ReservationDate, Board_Sport_Address, Board_Category 
+		select Board_Num, Board_Title, Board_ReservationDate, Board_Sport_Address, Board_Category 
 				from Board_Table order by Board_Num desc
 	</select>
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.smash.DAO.board.BoardDAO;
@@ -12,7 +13,7 @@ import com.smash.VO.board.BoardVO;
 
 import lombok.RequiredArgsConstructor;
 
-
+@Repository
 @Service
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
@@ -20,9 +21,9 @@ public class BoardServiceImpl implements BoardService {
 	private final BoardDAO BDao;
 
 	@Override
-	public List<BoardVO> List_board_main(BoardVO vo) throws Exception {
+	public List<BoardVO> List_board_main() throws Exception {
 		// TODO Auto-generated method stub
-		return BDao.List_board_main(vo);
+		return BDao.List_board_main();
 	}
 
 	@Override
