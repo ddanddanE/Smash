@@ -4,16 +4,9 @@
 <mapper namespace="com.smash.mapper.UserMapper">
 	<insert id="insert">
 		insert into user_table(User_Id,User_Pw,User_Name,User_ResiNum,User_Email,User_PhoneNum,User_BirthDay,
-		User_Gender,User_Address,User_Sport_Address,User_Agree) values(#{user_id},#{user_pw},#{user_name},
+		User_Gender,User_Address,User_Sport_Address,User_SPORT_ADDRESS_X,User_SPORT_ADDRESS_Y) values(#{user_id},#{user_pw},#{user_name},
 		#{user_resinum},#{user_email},#{user_phonenum},#{user_birthday},#{user_gender},#{user_address},
-		#{user_sport_address},#{user_agree})
-	</insert>
-	
-	<insert id="insert_no">
-		insert into user_table(User_Id,User_Pw,User_Name,User_ResiNum,User_Email,User_PhoneNum,User_BirthDay,
-		User_Gender,User_Address,User_Agree) values(#{user_id},#{user_pw},#{user_name},
-		#{user_resinum},#{user_email},#{user_phonenum},#{user_birthday},#{user_gender},#{user_address},
-		#{user_agree})
+		#{user_sport_address},#{user_sport_address_x},#{user_sport_address_y})
 	</insert>
 	
 	<select id="login" resultType="com.smash.VO.user.UserVO">
@@ -23,12 +16,12 @@
 	
 	<select id="findid" resultType="com.smash.VO.user.UserVO">
 		select * from user_table where
-		user_name like #{user_name} and user_resinum like #{user_resinum} and user_phonenum = #{user_phonenum}
+		user_name like #{user_name} and user_email like #{user_email}
 	</select>
 	
 	<select id="findpw" resultType="com.smash.VO.user.UserVO">
 		select * from user_table where
-		user_id like #{user_id} and user_name like #{user_name} and user_resinum like #{user_resinum} and user_phonenum = #{user_phonenum}
+		user_id like #{user_id} and user_name like #{user_name} and user_email like #{user_email}
 	</select>
 	
 	<select id="pwChk" resultType="com.smash.VO.user.UserVO">
@@ -36,8 +29,10 @@
 		user_id like #{user_id} and user_pw like #{user_pw}
 	</select>
 	<update id="update">
-		update user_table set user_name = #{user_name}, user_email=#{user_email}, user_phonenum = #{user_phonenum},
-		user_birthday = #{user_birthday}, user_address=#{user_address},user_sport_address=#{user_sport_address} where user_id like #{user_id} and user_pw like #{user_pw}
+		update user_table set user_pw=#{user_pw}, user_email = #{user_email},
+		user_phonenum = #{user_phonenum}, user_address=#{user_address},user_sport_address=#{user_sport_address},
+		user_sport_address_x=#{user_sport_address_x},user_sport_address_y=#{user_sport_address_y}
+		 where user_id like #{user_id} and user_pw like #{user_pw}
 	</update>
 	
 	<select id="idChk" resultType="com.smash.VO.user.UserVO">

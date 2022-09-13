@@ -9,12 +9,8 @@
 #mainBanner {
 	margin: auto;
 }
-
-
 -->
 </style>
-
-
 
 <div
 	style="background: url(/resources/images/main.jpg) no-repeat right/cover">

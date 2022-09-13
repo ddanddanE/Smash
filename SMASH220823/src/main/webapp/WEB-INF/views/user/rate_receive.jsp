@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@include file="./includes/header.jsp"%>
+<%@include file="../includes/header.jsp"%>
 
   <main>
     <section class="container">
@@ -16,17 +16,16 @@
 
           <div class="list-group">
             <a href="memberinfo.html" class="list-group-item list-group-item-action ">회원정보</a>
-            <a href="matchinglist.html" class="list-group-item list-group-item-action active">나의 매칭목록</a>
+            <a href="matchinglist.html" class="list-group-item list-group-item-action ">나의 매칭목록</a>
             <a href="matchdetail.html" class="list-group-item list-group-item-action">나의 신청내역</a>
              <a href="match_receive" class="list-group-item list-group-item-action">신청받은내역</a>
             <a href="reportlist.html" class="list-group-item list-group-item-action">신고받은 내용</a>
-            <a href="rate_receive" class="list-group-item list-group-item-action">받은 평점</a>
-            <a href="/user/delete"class="list-group-item list-group-item-action">회원탈퇴</a>
+            <a href="rate_receive" class="list-group-item list-group-item-action active">받은 평점</a>
             </div>
 
         </div>
         <div class="col-9">
-          <h2 class="mb-3"><i class="bi bi-list-stars"></i> 나의 매칭목록</h2>
+          <h2 class="mb-3"><i class="bi bi-list-stars"></i> 내가 받은 평점</h2>
           <div class="table-responsive">
             <table class="table table-hover table-bordered">
               <tbody>
@@ -66,7 +65,7 @@
                   <td><a href="#">제목이 길게 들어갑니다</a></td>
                   <td class="text-center">2020-09-05</td>
                   <td class="text-center">
-                    <button class="btn btn-outline-info" onclick="popReport()">신고하기</button>
+                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
                     <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
                   </td>
                 </tr>
@@ -75,7 +74,7 @@
                   <td><a href="#">제목이 길게 들어갑니다</a></td>
                   <td class="text-center">2020-09-05</td>
                   <td class="text-center">
-                    <button class="btn btn-outline-info" onclick="popReport()">신고하기</button>
+                    <button class="btn btn-danger btn-sm" onclick="popReport()">신고하기</button>
                     <button class="btn btn-success btn-sm mr-1" onclick="popRate()">평점주기</button>
                   </td>
                 </tr>
@@ -301,12 +300,8 @@
       $('#modalResult').modal('hide');
 
     }
-    function delete(){
-    	var result = confirm("삭제하시겠습니까?");
-    	console.log(result);
-    }
   </script>
 
 
 
- <%@include file="./includes/footer.jsp"%>
+ <%@include file="../includes/footer.jsp"%>

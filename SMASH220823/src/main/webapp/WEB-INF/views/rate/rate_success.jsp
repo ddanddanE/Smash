@@ -51,7 +51,7 @@ font-size: 2em;
 <body>
 
 	<div class="a">
-	<br> ${rival}의 평점은 <span>★</span>${avg }
+	<br> ${rival}의 평점은 <span class="span">★</span>${avg }
 	<br>
 	</div>
 	<button class="button" onclick="bbb()">창 닫기</button>
