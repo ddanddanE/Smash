@@ -2,8 +2,6 @@ package com.smash.VO.rate;
 
 
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data

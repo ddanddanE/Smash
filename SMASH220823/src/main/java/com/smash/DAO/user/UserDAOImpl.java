@@ -21,12 +21,6 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void insert_no(UserVO uvo) {
-		uMap.insert_no(uvo);
-		
-	}
-
-	@Override
 	public UserVO login(UserVO vo) {
 		return uMap.login(vo);
 	}

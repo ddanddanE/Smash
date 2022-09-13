@@ -19,12 +19,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void insert_no(UserVO uvo) {
-		uDao.insert_no(uvo);
-		
-	}
-
-	@Override
 	public UserVO login(UserVO vo) {
 		return uDao.login(vo);
 	}

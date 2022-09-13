@@ -2,74 +2,162 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@include file="../includes/header.jsp"%>
 
-
 <style>
-<!--
 #myform fieldset {
-   display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+	display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
     direction: rtl; /* 이모지 순서 반전 */
     border: 0; /* 필드셋 테두리 제거 */
     margin-left: 100px;
 }
-
+.modal-body input[type=button]{
+float: right;
+}
 
 #myform input[type=radio] {
-   display: none;
-   margin-left: 100px;
+	display: none;
+	margin-left: 100px;
 }
 
 #myform label {
-   font-size: 3em;
-   color: transparent;
-   text-shadow: 0 0 0 #f0f0f0;
+	font-size: 3em;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
 }
 
 
 
 #myform input[type=radio]:checked ~ label {
-   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-.modal-body button {
-   margin-left: 180px;
-}
-#ratesend{
+.modal-body .button {
 	margin-left: 180px;
 }
 
 #myform #span {
-   margin-left: 170px;
+	margin-left: 170px;
 }
 
 #myform .dd {
-
-   margin-left: 60px;
+	margin-left: 60px;
 }
 
 textarea {
-         width: 65%;
-         height: 150px;
-         padding: 10px;
-         box-sizing: border-box;
-         border: solid 2px #1E90FF;
-         border-radius: 5px;
-         font-size: 16px;
-         resize: both;
-         
-      }
+			width: 65%;
+			height: 150px;
+			padding: 10px;
+			box-sizing: border-box;
+			border: solid 2px #1E90FF;
+			border-radius: 5px;
+			font-size: 16px;
+			resize: both;
+			
+		}
 
 #myform label:hover {
-   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
 #myform label:hover ~ label {
-   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
--->
-</style>
 
+.button:hover {
+	background-color: #008000;
+	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+	color: #fff;
+	transform: translateY(-7px);
+}
+
+textarea {
+	width: 65%;
+	height: 150px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: solid 2px #1E90FF;
+	border-radius: 5px;
+	font-size: 16px;
+	resize: both;
+}
+.button, .button3 {
+	width: 80px;
+	height: 45px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: #000;
+	background-color: #fff;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+
+.button2 {
+	width: 140px;
+	height: 45px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: #000;
+	background-color: #a0a0a0;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+
+.button3:hover, .button4:hover {
+	background-color: #DC143C;
+	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+	color: #fff;
+	transform: translateY(-3px);
+}
+
+.button:hover {
+	background-color: #008000;
+	box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+	color: #fff;
+	transform: translateY(-3px);
+}
+
+.button4 {
+	text-align: center;
+	margin: auto;
+	display: block;
+	width: 140px;
+	height: 45px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	font-weight: 500;
+	color: #000;
+	background-color: #fff;
+	border: none;
+	border-radius: 45px;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease 0s;
+	cursor: pointer;
+	outline: none;
+}
+.span{
+font-size: 1.5em;
+	color: transparent;
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+</style>
 
   <main>
     <section class="container">
@@ -78,7 +166,8 @@ textarea {
 
           <div class="text-center p-3 mb-3 border rounded">
             <img src="/resources/images/profile1.jpg" class="rounded-circle" width="100%">
-            <div class="p-3">ID입니다</div>
+            <div class="p-3"><span class="span">★</span>${avg}<br>
+            				${user.user_id}</div>
           </div>
 
           <div class="list-group">
@@ -98,11 +187,13 @@ textarea {
               <tbody>
                 
                 <tr class="table-primary text-center">
-                  <th style="width: 80px;">번호</th>
+                  <th style="width: 50px;">번호</th>
                   <th style="width: 80px;">상대</th>
-                  <th style="width: 150px;">경기장(장소)</th>
-                  <th style="width: 150px;">날짜(대전일)</th>
-  	              <th style="width: 200px;">신고/평점 </th>
+                  <th style="width: 200px;">방제목</th>
+                  <th style="width: 70px;">경기장</th>
+                  <th style="width: 170px;">날짜(대전일)</th>
+  	              <th style="width: 200px;">평점/신고 </th>
+  	              
                 </tr>
                 
                 
@@ -114,11 +205,11 @@ textarea {
 					<td>1<input type="hidden" value="${user.user_id }"
 							name="user.user_id" /> <input type="hidden"
 							value="${bo.NOTICE_MSG_NO}" name="NOTICE_MSG_NO" /> </td>
-						
+						<c:out value="${fn:substring(title,0,20)}" />
 						<td><c:out value="${bo.NOTICE_MSG_RIVAL}" /></td>
+						<td><c:out value="${bo.BOARD_TITLE}" /></td>
 						<td><c:out value="${bo.NOTICE_MSG_PLACE}" /></td>
-						<td><fmt:formatDate value="${bo.NOTICE_MSG_TIME }"
-								pattern="yy-MM-dd" /></td>
+						<td><c:out value="${fn:substring(bo.NOTICE_MSG_TIME,0,13)}"/>시</td>
 						
 						<!-- 평점버튼 -->
 						<td>
@@ -128,20 +219,20 @@ textarea {
 							<button class="btn btn-secondary btn-sm mr-1 rounded-pill" type="button"
 									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">평점주기</button>
 								
-								
-							<button class="btn btn-danger btn-sm mr-1 rounded-pill" type="button" onclick="popupReport('${bo.NOTICE_MSG_NO}','${bo.NOTICE_MSG_RIVAL}')">신고하기</button>
+								<button class="btn btn-danger btn-sm mr-1 rounded-pill" type="button" onclick="popupReport('${bo.NOTICE_MSG_NO}','${bo.NOTICE_MSG_RIVAL}')">신고하기</button>
+							
 								
 							</c:when>
 							 <c:otherwise>
 								<input type="button" class="btn btn-secondary btn-sm mr-1 rounded-pill" value="평점주기"
 									disabled="disabled" />
-								<input type="button" class="btn btn-danger btn-sm mr-1 rounded-pill" value="신고하기"
+						  		<input type="button" class="btn btn-danger btn-sm mr-1 rounded-pill" value="신고하기"
 									disabled="disabled" />
 							
 							<!-- 신고버튼 -->
 								</c:otherwise>
 									</c:choose>
-										</td>
+										
 							</tr>
 					</c:if>			
 								
@@ -158,9 +249,9 @@ textarea {
 					<tr class="odd gradeX">
 						<td>1</td>
 						<td><c:out value="${bb.NOTICE_MSG_USER}" /></td>
+						<td><c:out value="${bb.BOARD_TITLE}" /></td>
 						<td><c:out value="${bb.NOTICE_MSG_PLACE}" /></td>
-						<td><fmt:formatDate value="${bb.NOTICE_MSG_TIME }"
-								pattern="yy-MM-dd" /></td>
+						<td><c:out value="${fn:substring(bb.NOTICE_MSG_TIME,0,13)}"/>시</td>
 						<td>
 						<c:choose>
 						<c:when test="${bb.NOTICE_MSG_RRATE==0}">
@@ -271,78 +362,8 @@ textarea {
 		</div>
 	</div>
 
-  <!--결과modal-->
-  <div class="modal fade" id="modalResult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">결과작성</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            
-            <div class="form-group text-center">
-              <label class="mr-5 font-weight-bold">결과</label>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">승</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">무</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                <label class="form-check-label" for="inlineRadio3">패</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                <label class="form-check-label" for="inlineRadio3">노쇼</label>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="sendResult()">결과저장하기</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
-  <!-- 평점modal-->
-  <div class="modal fade" id="modalRate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">평점주기</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="sendRate()">평점주기</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  
   
   
   	<!--  평점 팝업	-->
@@ -380,7 +401,7 @@ textarea {
 						<input type="checkbox" id="che" name="che" onclick="check()" /></div> </br>
 						
 					</form>
-						<input type="button" id="ratesend" value="보내기" class="btn btn-secondary btn-sm mr-1 rounded-pill" onclick="go()"/>
+						<input type="button" value="보내기" class="btn btn-primary" onclick="go()"/>
 				</div>
 				<div class="modal-footer"></div>
 			</div>

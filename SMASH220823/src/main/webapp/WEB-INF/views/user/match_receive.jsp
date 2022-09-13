@@ -2,8 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@include file="../includes/header.jsp"%>
-
+<style>
+.span{
+font-size: 1.5em;
+	color: transparent;
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+</style>
   <main>
     <section class="container">
       <div class="row mb-4">
@@ -11,7 +18,8 @@
 
           <div class="text-center p-3 mb-3 border rounded">
             <img src="/resources/images/profile1.jpg" class="rounded-circle" width="100%">
-            <div class="p-3">ID입니다</div>
+            <div class="p-3"><span class="span">★</span>${avg}<br>
+            				${user.user_id}</div>
           </div>
 
           <div class="list-group">
@@ -19,8 +27,8 @@
             <a href="matchinglist.html" class="list-group-item list-group-item-action ">나의 매칭목록</a>
             <a href="matchdetail.html" class="list-group-item list-group-item-action ">나의 신청내역</a>
              <a href="match_receive" class="list-group-item list-group-item-action active">신청받은내역</a>
-           <a href="/report/reportlist" class="list-group-item list-group-item-action">신고받은 내용</a>
-            <a href="#" class="list-group-item list-group-item-action">회원탈퇴</a>
+            <a href="reportlist.html" class="list-group-item list-group-item-action">신고받은 내용</a>
+            <a href="rate_receive" class="list-group-item list-group-item-action">받은 평점</a>
             </div>
 
         </div>
@@ -31,104 +39,49 @@
               <tbody>
                 
                 <tr class="table-primary text-center">
-                  <th style="width: 80px;">번호</th>
+                  <th style="width: 50px;">번호</th>
                   <th style="width: 80px;">신청자</th>
-                  <th style="width: 150px;">경기장(장소)</th>
-                  <th style="width: 150px;">날짜(대전일)</th>
-  	              <th style="width: 200px;">상태 </th>
-  	              <th style="width: 200px;">버튼(수정) </th>
+                  <th style="width: 200px;">방제목</th>
+                  <th style="width: 70px;">경기장</th>
+                  <th style="width: 170px;">날짜(대전일)</th>
+  	              <th style="width: 50px;">버튼 </th>
                 </tr>
                 
                 
                 
                 
              <c:forEach items="${lo  }" var="bo">
-             <c:if test="${bo.NOTICE_MSG_STATUS.equals('대기') || bo.NOTICE_MSG_STATUS.equals('수락')  || bo.NOTICE_MSG_STATUS.equals('신청중')}">
+             <c:if test="${bo.NOTICE_MSG_STATUS.equals('수락')  || bo.NOTICE_MSG_STATUS.equals('신청')}">
 					<tr class="odd gradeX">
 					<td>1<input type="hidden" value="${user.user_id }"
 							name="user.user_id" /> <input type="hidden"
 							value="${bo.NOTICE_MSG_NO}" name="NOTICE_MSG_NO" /> </td>
 						
 						<td><c:out value="${bo.NOTICE_MSG_RIVAL}" /></td>
+						<td><c:out value="${bo.BOARD_TITLE}" /></td>
 						<td><c:out value="${bo.NOTICE_MSG_PLACE}" /></td>
-						<td><fmt:formatDate value="${bo.NOTICE_MSG_TIME }"
-								pattern="yy-MM-dd" /></td>
-								<td><c:out value="${bo.NOTICE_MSG_STATUS}" /></td>
-						
-						
-						<td>
-						<c:choose>
-						<c:when test="${bo.NOTICE_MSG_STATUS.equals('신청중')}">
-
-							<button class="button" type="button"
-									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">수락</button>
-									<button class="button" type="button"
-									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">거절</button>
-									
+						<td><c:out value="${fn:substring(bo.NOTICE_MSG_TIME,0,13)}"/>시</td>
+						<td><c:choose>
+						<c:when test="${bo.NOTICE_MSG_STATUS.equals('신청')}">
+							
+							<button class="btn btn-danger btn-sm mr-1 rounded-pill"  type="button"
+									onclick="popupyn('${bo.NOTICE_MSG_RIVAL}' ,'${bo.BOARD_NUM}')" >응답</button>
 							</c:when>
 							
 								<c:when test="${bo.NOTICE_MSG_STATUS.equals('수락')}">
 
-							<button class="button" type="button"
-									onclick="popuprate('${bo.NOTICE_MSG_NO}','${user.user_id }','${bo.NOTICE_MSG_USER}','${bo.NOTICE_MSG_RIVAL}')">경기취소</button>
-							</c:when>
-							
-							<c:when test="${bo.NOTICE_MSG_STATUS.equals('대기')}">
-								대기
+							<button class="btn btn-danger btn-sm mr-1 rounded-pill" type="button"
+									onclick="popupre('${bo.NOTICE_MSG_RIVAL}' ,'${bo.NOTICE_MSG_NO}','${bo.NOTICE_MSG_USER}')">경기결과</button>
 							</c:when>
 							
 									</c:choose>
-										</td>
+							</td>			
 							</tr>
 					</c:if>			
 								
 
 							
-								
-							
-							
 				</c:forEach>
-				
-				
-				<c:forEach items="${lo2  }" var="bb">
-				 <c:if test="${bb.NOTICE_MSG_STATUS.equals('신청중') || bb.NOTICE_MSG_STATUS.equals('대기') || bb.NOTICE_MSG_STATUS.equals('수락') }">
-					<tr class="odd gradeX">
-						<td>1</td>
-						<td><c:out value="${bb.NOTICE_MSG_USER}" /></td>
-						<td><c:out value="${bb.NOTICE_MSG_PLACE}" /></td>
-						<td><fmt:formatDate value="${bb.NOTICE_MSG_TIME }"
-								pattern="yy-MM-dd" /></td>
-						<td><c:out value="${bb.NOTICE_MSG_STATUS}" /></td>
-						
-						
-						<td>
-						<c:choose>
-						<c:when test="${bb.NOTICE_MSG_STATUS.equals('신청중')}">
-
-							<button class="button" type="button"
-									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">수락</button>
-									
-									<button class="button" type="button"
-									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">거절</button>
-									
-							</c:when>
-							
-								<c:when test="${bb.NOTICE_MSG_STATUS.equals('수락')}">
-
-							<button class="button" type="button"
-									onclick="popuprate('${bb.NOTICE_MSG_NO}','${user.user_id }','${bb.NOTICE_MSG_USER}','${bb.NOTICE_MSG_RIVAL}')">경기취소</button>
-							</c:when>
-							 	<c:when test="${bb.NOTICE_MSG_STATUS.equals('대기')}">
-									대기
-							</c:when>
-
-									</c:choose>
-										</td>
-							</tr>
-					</c:if>			
-				</c:forEach>
-             
-             
              
               </tbody>
             </table>
@@ -161,151 +114,144 @@
     </section>
 
   </main>
-  <!--신고modal-->
-  <div class="modal fade" id="modalReport" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <!-- 수락/거절modal-->
+  <div class="modal fade" id="modalyn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
+          <h5 class="modal-title" >응답하기</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">로그인된 ID</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">신고할 ID</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">신고제목</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">신고내용</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
+          <form id="myform" name="myform" >
+          <input type="hidden" id="rival" class="rival" name="NOTICE_MSG_RIVAL" />
+          <input type="hidden" id="num" class="num" name="BOARD_NUM" />
+          <center>
+             <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes">
+                <label class="form-check-label" for="inlineRadio1">수락</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no">
+                <label class="form-check-label" for="inlineRadio2">거절</label>
+              </div>
+              </center>
+              </form>
         <div class="modal-footer">
-         <button type="button" class="btn btn-primary" onclick="sendReport()">신고하기</button>
+          <button type="button" class="btn btn-primary" onclick="sendyn()">응답하기</button>
         </div>
       </div>
     </div>
   </div>
+  </div>
 
-  <!--결과modal-->
-  <div class="modal fade" id="modalResult" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- 결과modal-->
+  <div class="modal fade" id="modalre" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">결과작성</h5>
+          <h5 class="modal-title" >결과</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form>
-            
-            <div class="form-group text-center">
-              <label class="mr-5 font-weight-bold">결과</label>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                <label class="form-check-label" for="inlineRadio1">승</label>
+          <form id="myresult" name="myresult" >
+          <input type="hidden" id="rival" class="rival" name="NOTICE_MSG_RIVAL" />
+          <input type="hidden" id="rival2" class="rival2" name="rivalName" />
+          <input type="hidden" id="user" class="user" name="NOTICE_MSG_USER" />
+          <input type="hidden" id="user2" class="user2" name="userName" />
+          <input type="hidden" id="num" class="num" name="NOTICE_MSG_NO" />
+           <center>
+           	    <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="result" id="result" value="승">
+                <label class="form-check-label" for="result">승</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                <label class="form-check-label" for="inlineRadio2">무</label>
+                <input class="form-check-input" type="radio" name="result" id="result" value="무">
+                <label class="form-check-label" for="result">무</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                <label class="form-check-label" for="inlineRadio3">패</label>
+                <input class="form-check-input" type="radio" name="result" id="result" value="패">
+                <label class="form-check-label" for="result">패</label>
               </div>
               <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-                <label class="form-check-label" for="inlineRadio3">노쇼</label>
+                <input class="form-check-input" type="radio" name="result" id="result" value="노쇼">
+                <label class="form-check-label" for="result">노쇼</label>
               </div>
-            </div>
-          </form>
-        </div>
+              </center>
+              </form>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="sendResult()">결과저장하기</button>
+          <button type="button" class="btn btn-primary" onclick="sendre()">결과제출</button>
         </div>
       </div>
     </div>
   </div>
-
-
-  <!-- 평점modal-->
-  <div class="modal fade" id="modalRate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">평점주기</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="sendRate()">평점주기</button>
-        </div>
-      </div>
-    </div>
   </div>
+
+
+
+
+
+
+
 
  <script>
-    function popReport(){
-      $('#modalReport').modal('show');
-
-
+    function popupyn(rival,num){
+    	myform.rival.value = rival;
+    	myform.num.value = num;
+    	
+      $('#modalyn').modal('show');
     }
 
-    function popRate(){
-      $('#modalRate').modal('show');
-
+    function sendyn(){
+    	$.post("/user/applyn", $("#myform").serialize(), function(data) {
+			if (data == "Y") {
+				alert("수락했습니다.");
+				location.reload();
+			} else {
+				
+				alert("거절했습니다");
+				location.reload();
+			}
+		});
+    	
+    	$('#myform').modal('hide');
+    	
+    	location.reload();
     }
 
-    function popResult(){
-      $('#modalResult').modal('show');
-
+    
+    
+    
+    function popupre(rival,num,user){
+    	myresult.rival.value = rival;
+    	myresult.rival2.value = rival;
+    	myresult.num.value = num;
+    	myresult.user.value = user;
+    	myresult.user2.value = user;
+    	
+      $('#modalre').modal('show');
     }
 
-    function sendReport(){
-      alert("신고완료되었습니다");
-
-      $('#modalReport').modal('hide');
-
-
-    }
-
-    function sendRate(){
-      alert("평점주기완료되었습니다");
-      $('#modalRate').modal('hide');
-
-    }
-
-    function sendResult(){
-      alert("결과가 전송되었습니다");
-      $('#modalResult').modal('hide');
-
-    }
+    function sendre(){
+    	$.post("/match/result", $("#myresult").serialize(), function(data) {
+			if (data == "Y") {
+				alert("체줄 완료");
+				location.reload();
+			}
+		});
+    	
+    	$('#myresult').modal('hide');
+    	location.reload();
+    } 
+    
+    
+    
+   
   </script>
 
 
