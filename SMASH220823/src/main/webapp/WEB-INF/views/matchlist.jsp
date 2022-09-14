@@ -41,6 +41,7 @@
           </div>
           <div class="col">
             <button type="button" class="btn btn-primary align-bottom mr-1">검색</button>
+            <button type="button" class="btn btn-primary align-bottom mr-1" href="board/Board_Write">글쓰기</button>
           </div>
 
         </div>

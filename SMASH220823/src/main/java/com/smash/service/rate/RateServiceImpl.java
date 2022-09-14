@@ -8,7 +8,6 @@ import com.smash.DAO.rate.RateDAO;
 import com.smash.VO.match.noticeBVO;
 import com.smash.VO.rate.RateBVO;
 import com.smash.VO.user.UserVO;
-import com.smash.mapper.RateMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -62,7 +61,6 @@ public class RateServiceImpl implements RateService{
 	public void rate_update2(noticeBVO no) {
 		ra_dao.rate_update2(no);
 	}
-	
 	@Override
 	public List<RateBVO> rate_select1(UserVO uo) {
 		return ra_dao.rate_select1(uo);

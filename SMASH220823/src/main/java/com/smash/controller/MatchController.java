@@ -1,21 +1,18 @@
 package com.smash.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+/*
+ * 작성자: 누구
+ */
 
-import java.awt.Image;
-import java.util.Collection;
+
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.ImageIcon;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -33,32 +30,23 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MatchController {
 
-
 	private final MatchService match_service;
-	
 	private final UserService uService;
-	
-	
-	
 	
 
 	/*----------------로그인 id가지고 mypage 이동  user controller로??------------------1---*/
 	@GetMapping("/user/myPage")
-	public String myPage(Model m,noticeBVO no,@RequestParam("user.user_id")String id,HttpSession session) {
+	public String myPage(Model m,noticeBVO no,@RequestParam("user.user_id")String id, HttpSession session) {
 		
 		UserVO vo = (UserVO) session.getAttribute("user");
 		
 		session.setAttribute("user", uService.login(vo));
 		
-		
 		List<noticeBVO> lo = match_service.select_notice1(vo);
 		
-			m.addAttribute("lo", lo);
-
+		m.addAttribute("lo", lo);
 		List<noticeBVO> lo2 = match_service.select_notice2(vo);
-		
 		m.addAttribute("lo2", lo2);
-		
 		m.addAttribute("id", id);
 		
 		return "user/myPage";

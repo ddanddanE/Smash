@@ -26,5 +26,4 @@ public interface RateService {
 
 	public List<RateBVO> rate_select1(UserVO uo);/* 나의 정보(평점) 출력 */
 	
-	
 }

@@ -28,8 +28,6 @@
 		select userName,rival,rating from rate_table where userName=#{user_id}
 	</select>
 	
-	
-	
 	<select id="rate_select2" resultType="com.smash.VO.match.noticeBVO">
 		select NOTICE_MSG_USER,NOTICE_MSG_RIVAL from notice_msg_table where NOTICE_MSG_NO=#{NOTICE_MSG_NO}
 	</select>
