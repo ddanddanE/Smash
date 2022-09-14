@@ -25,7 +25,6 @@ import oracle.jdbc.proxy.annotation.GetProxy;
 @Controller
 @RequiredArgsConstructor
 @Log4j
-@RequestMapping("/rate")
 public class RateController {
 
 	private final RateService ra_service;
@@ -35,7 +34,7 @@ public class RateController {
 
 	/*-----------------------myPage에서 평점 이동------------------------------------*/
 
-	@GetMapping("/rate")
+	@GetMapping("/rate/rate")
 	public String rate2(Model m, noticeBVO no,@RequestParam("user.user_id")String id) {
 
 		
@@ -50,7 +49,7 @@ public class RateController {
 
 	}
 
-	@PostMapping("/rate_suc")
+	@PostMapping("/rate/rate_suc")
 	@ResponseBody
 	public String good(RateBVO bo, Model m, @RequestParam("rival") String rival, @RequestParam("id") String id,
 			noticeBVO no) {

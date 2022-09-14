@@ -239,7 +239,7 @@ font-size: 1.5em;
 
     function sendre(){
     	$.post("/match/result", $("#myresult").serialize(), function(data) {
-			if (data == "Y") {
+			if (data == "good") {
 				alert("체줄 완료");
 				location.reload();
 			}

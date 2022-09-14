@@ -140,38 +140,7 @@ public class UserController {
 	}
 
 	// 나의 매칭 목록
-	@GetMapping("/matchinglist")
-	public String aa(HttpSession session, UserVO uo, Model m, noticeBVO vo, ReportVO rv) {
-
-		double total = 0;
-		int cnt = 0;
-		double avg = 0;
-
-		uo = (UserVO) session.getAttribute("user");
-
-		session.setAttribute("user", uo);
-
-		List<noticeBVO> lo = match_service.select_notice1(uo);
-
-		m.addAttribute("lo", lo);
-
-		List<noticeBVO> lo2 = match_service.select_notice2(uo);
-
-		m.addAttribute("lo2", lo2);
-
-		List<RateBVO> bb = ra_service.rate_select1(uo);
-
-		for (RateBVO ba : bb) {
-			total = total + ba.getRating();
-			cnt++;
-		}
-		avg = total / cnt;
-		String aa = String.format("%.1f", avg);
-
-		m.addAttribute("avg", aa);
-
-		return "/user/matchinglist";
-	}
+	
 
 	// ------------------------------------------------------------- ↑0908
 

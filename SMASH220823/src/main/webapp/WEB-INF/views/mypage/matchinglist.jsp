@@ -171,10 +171,10 @@ font-size: 1.5em;
           </div>
 
           <div class="list-group">
-            <a href="/user/memberinfo" class="list-group-item list-group-item-action ">회원정보</a>
-            <a href="/user/matchinglist" class="list-group-item list-group-item-action active">나의 매칭목록</a>
-            <a href="/user/matchdetail.html" class="list-group-item list-group-item-action">나의 신청내역</a>
-             <a href="/user/match_receive" class="list-group-item list-group-item-action">신청받은내역</a>
+            <a href="memberinfo" class="list-group-item list-group-item-action ">회원정보</a>
+            <a href="matchinglist" class="list-group-item list-group-item-action active">나의 매칭목록</a>
+            <a href="matchdetail" class="list-group-item list-group-item-action">나의 신청내역</a>
+             <a href="match_receive" class="list-group-item list-group-item-action">신청받은내역</a>
             <a href="/report/reportlist" class="list-group-item list-group-item-action">신고받은 내용</a>
             <a href="#" class="list-group-item list-group-item-action">회원탈퇴</a>
             </div>

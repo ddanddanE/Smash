@@ -34,7 +34,7 @@
         <ul class="navbar-nav ml-auto">
          
           <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="matchlist">매칭목록</a>
+            <a class="nav-link font-weight-bold" href="/matchlist">매칭목록</a>
           </li>          
           <li class="nav-item">
             <a class="nav-link font-weight-bold" href="ranking">랭킹보기</a>
@@ -50,7 +50,7 @@
         <c:if test="${user.user_id ne null}">
         	<span class="nav-link font-weight-bold">${user.user_id }</span>
         		<div class="ml-1">
-          			<a href="/matchinglist" class="btn btn-light">마이페이지</a>
+          			<a href="/mypage/matchinglist" class="btn btn-light">마이페이지</a>
         		</div>
         		<div class="ml-1">
           			<a href="/user/logout" class="btn btn-light">로그아웃</a>

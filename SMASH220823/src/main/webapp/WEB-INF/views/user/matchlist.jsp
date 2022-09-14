@@ -147,7 +147,7 @@
       </div>
       <div class="modal-body">
       <form id="myform" name="myform">
-        <input type="hidden" name="BOARD_NUM" value="2">
+        <input type="hidden" name="BOARD_NUM" value="4">
         <input type="hidden" name="NOTICE_MSG_RIVAL" value="${user.user_id }">
         <input type="hidden" name="BOARD_TITLE" value="종로구 솔데스트에서 한게임 해요">
         <div class="border mb-3" id="map-detail" style="width:100%;height:200px;"></div>
@@ -235,6 +235,7 @@
         marker.setMap(mapDetail);
       });
     }
+    
 /*--------------------------------------경기 신청-------------------------------------*/
     function sendMatch() {
     	
