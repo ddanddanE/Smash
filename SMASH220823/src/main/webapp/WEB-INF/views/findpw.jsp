@@ -3,15 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="./includes/header.jsp"%>
-
-
-<style>
-.form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 30px;
-    margin: auto;
-}
+<script type="text/javascript" src="/resources/js/user.js"></script><!--수정 -->
 
 
 </style>
@@ -45,31 +37,5 @@
     </section>
 
   </main>
-<script>
-function findpw(){
-	$.ajax({
-		url : "/user/findPWresult",
-		type : "POST",
-		data : {
-			"id" : $("#inputid").val(),
-			"name" : $("#inputname").val(),
-			"email" : $("#inputemail").val()
-		},
-		success: function(data){
-			if(data == 1){
-				$("#inputid").val("");
-				$("#inputname").val("");
-				$("#inputemail").val("");
-				$("#inputname").focus();
-				alert("아이디나 이름,이메일이 다릅니다.");
-			}else{
-				alert(data);
-				history.go(-1);
-			}
-		}
-	});
-}
-</script>
-
 
   <%@include file="./includes/footer.jsp"%>

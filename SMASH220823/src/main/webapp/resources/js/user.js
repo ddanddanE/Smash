@@ -56,28 +56,7 @@ function insertEmail() {
 	});
 }
 
-
-
-//주소 합치는 스크립트
-function adr() {
-	let adrValue1 = $("#sample6_address").val();
-	let adrValue2 = $("#sample6_extraAddress").val();
-	let adrValue3 = $("#sample6_detailAddress").val();
-	let adrValue4 = $("#sample6_postcode").val();
-	
-	$("#Address").val(adrValue1+"@ "+adrValue2+"#"+adrValue3+"("+adrValue4 +")");
-}
-
-//운동장 주소 합치는 스크립트
-function sportadr() {
-	let sprValue1 = $("#sample7_address").val();
-	let sprValue2 = $("#sample7_extraAddress").val();
-	let sprValue3 = $("#sample7_detailAddress").val();
-	let sprValue4 = $("#sample7_postcode").val();
-	
-	$("#Sport_Address").val(sprValue1+"@"+sprValue2+"#"+sprValue3+"("+sprValue4+")");
-}
-
+//주소 자크립트 
 function sample6_execDaumPostcode() {
 	new daum.Postcode({
 		oncomplete: function(data) {
@@ -127,10 +106,17 @@ function sample6_execDaumPostcode() {
 	}).open();
 }
 
-//고정 운동장 자크립트 
+//주소 합치는 스크립트
+function adr() {
+	let adrValue1 = $("#sample6_address").val();
+	let adrValue2 = $("#sample6_extraAddress").val();
+	let adrValue3 = $("#sample6_detailAddress").val();
+	let adrValue4 = $("#sample6_postcode").val();
 	
-    
+	$("#Address").val(adrValue1+adrValue2+adrValue3+"("+adrValue4 +")");
+}
 
+//고정 운동장 자크립트 
 function sample7_execDaumPostcode() {
 	var geocoder = new daum.maps.services.Geocoder();
 					//마커를 미리 생성
@@ -138,7 +124,6 @@ function sample7_execDaumPostcode() {
 	new daum.Postcode({
 		oncomplete: function(data) {
 			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
 			// 각 주소의 노출 규칙에 따라 주소를 조합한다.
 			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 			var addr = ''; // 주소 변수
@@ -321,7 +306,10 @@ function checks() {
 	}
 	
 }
-
+///////////////////////////////////
+//AJAX
+///////////////////////////////////
+//회원가입 아이디 중복체크
 function idchk(){
 	if ($("#id").val() == "") {
 		alert("아이디를 입력해주세요.")
@@ -350,7 +338,7 @@ function idchk(){
 		});
 	}
 }
-
+//업데이트 비밀번호 확인
 function pwchk(){
 	$.ajax({
 		url:"/user/pwChk",
@@ -380,4 +368,52 @@ function pwchk(){
 				}
 	});
 
+}
+
+//아이디 찾기
+function findid(){
+	$.ajax({
+		url : "/user/findIDresult",
+		type : "POST",
+		data : {
+			"name" : $("#inputname").val(),
+			"email" : $("#inputemail").val()
+		},
+		success: function(data){
+			if(data == 1){
+				$("#inputname").val("");
+				$("#inputemail").val("");
+				$("#inputname").focus();
+				alert("이름이나 이메일이 다릅니다.");
+			}else{
+				alert(data);
+				history.go(-1);
+			}
+		}
+	});
+}
+
+//비밀번호 찾기
+function findpw(){
+	$.ajax({
+		url : "/user/findPWresult",
+		type : "POST",
+		data : {
+			"id" : $("#inputid").val(),
+			"name" : $("#inputname").val(),
+			"email" : $("#inputemail").val()
+		},
+		success: function(data){
+			if(data == 1){
+				$("#inputid").val("");
+				$("#inputname").val("");
+				$("#inputemail").val("");
+				$("#inputname").focus();
+				alert("아이디나 이름,이메일이 다릅니다.");
+			}else{
+				alert(data);
+				history.go(-1);
+			}
+		}
+	});
 }

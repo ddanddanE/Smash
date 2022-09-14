@@ -3,15 +3,8 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="./includes/header.jsp"%>
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
-<style>
-.form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 30px;
-    margin: auto;
-}
+<script type="text/javascript" src="/resources/js/user.js"></script><!--수정 -->
 
 
 </style>
@@ -40,30 +33,6 @@
     </section>
 
   </main>
-
-<script>
-function findid(){
-	$.ajax({
-		url : "/user/findIDresult",
-		type : "POST",
-		data : {
-			"name" : $("#inputname").val(),
-			"email" : $("#inputemail").val()
-		},
-		success: function(data){
-			if(data == 1){
-				$("#inputname").val("");
-				$("#inputemail").val("");
-				$("#inputname").focus();
-				alert("이름이나 이메일이 다릅니다.");
-			}else{
-				alert(data);
-				history.go(-1);
-			}
-		}
-	});
-}
-</script>
 
 
   <%@include file="./includes/footer.jsp"%>

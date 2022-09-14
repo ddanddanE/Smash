@@ -87,52 +87,22 @@ public class UserController {
 	public void memberinfo() {
  	}
 	
-	//나의 신청내역
-	@GetMapping("matchdetail")
-		public void matchdetail() {
-			
-		}
-	
-	//신청받은 내역
-	@GetMapping("match_receive")
-	public void match_receive() {
-		
-	}
-	//------------------------------------------------------------- ↑0908
 	@GetMapping("/logout")
 	public String logoutget(HttpSession session) {
 		session.invalidate();
 		return "redirect: /";
-	}
-	@PostMapping("/logout")
-	public String logoutpost(HttpSession session) {
-		session.invalidate();
-		return "redirect: /";
-	}
-
-	// 嚥≪뮄�젃占쎌뵥 占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎈툡占쎌뵠占쎈탵 �뜮袁⑥쓰 燁살꼵�� 筌띿쉸�몵筌롳옙 筌롫뗄�뵥 占쎈툡占쎈빍筌롳옙
-	// 占쎈뼄占쎈뻻 占쎈연疫뀐옙 占쎈읂占쎌뵠筌욑옙
-	
-	// 筌롫뗄�뵥占쎈읂占쎌뵠筌욑옙占쎈퓠占쎄퐣 占쎌돳占쎌뜚揶쏉옙占쎌뿯占쎈릭筌롳옙 占쎌젟癰귣똻�젫�⑨옙 占쎈짗占쎌벥
-	@GetMapping("/signup/agree")
-	public String agree() {
-		return "/user/agree";
 	}
 	
 	@PostMapping("/success")
 	public String complete(UserVO uvo, HttpServletRequest request) {
 		String User_id = request.getParameter("user_id");
 		String User_Sport_Address = request.getParameter("user_sport_address");
-
+		System.out.println(User_Sport_Address);
 		uService.insert(uvo);	
 		
 		return "/user/success";
 	}
 
-	@GetMapping("/findID")
-	public String findID() {
-		return "/user/findID";
-	}
 
 	@PostMapping("/findIDresult")
 	@ResponseBody
@@ -188,53 +158,10 @@ public class UserController {
 		String firEmail = email.substring(0, email.indexOf("@"));
 		String secEmail = email.substring(email.indexOf("@") + 1);
 
-		String adr = uvo.getUser_address();
-
-		String adr1 = adr.substring(0, adr.indexOf("@"));
-		String adr2 = adr.substring(adr.indexOf("@") + 1, adr.indexOf("#"));
-		String adr3 = adr.substring(adr.indexOf("#") + 1, adr.indexOf("("));
-		String adr4 = adr.substring(adr.indexOf("(") + 1, adr.indexOf(")"));
-
-		System.out.println(adr1);
-		System.out.println(adr2);
-		System.out.println(adr3);
-		System.out.println(adr4);
-
 		m.addAttribute("firEmail", firEmail);
 		m.addAttribute("secEmail", secEmail);
 
-		m.addAttribute("adr1", adr1);
-		m.addAttribute("adr2", adr2);
-		m.addAttribute("adr3", adr3);
-		m.addAttribute("adr4", adr4);
-
-		String s_Adr = uvo.getUser_sport_address();
-		System.out.println(s_Adr);
-		if (s_Adr == null || s_Adr.equals("notsubmit")) {
-			m.addAttribute("s_Adr1", "");
-			m.addAttribute("s_Adr2", "");
-			m.addAttribute("s_Adr3", "");
-			m.addAttribute("s_Adr4", "");
-		} else {
-			String s_Adr1 = s_Adr.substring(0, s_Adr.indexOf("@"));
-			String s_Adr2 = s_Adr.substring(s_Adr.indexOf("@") + 1, s_Adr.indexOf("#"));
-			String s_Adr3 = s_Adr.substring(s_Adr.indexOf("#") + 1, s_Adr.indexOf("("));
-			String s_Adr4 = s_Adr.substring(s_Adr.indexOf("(") + 1, s_Adr.indexOf(")"));
-
-			System.out.println(s_Adr1);
-			System.out.println(s_Adr2);
-			System.out.println(s_Adr3);
-			System.out.println(s_Adr4);
-
-			m.addAttribute("s_Adr1", s_Adr1);
-			m.addAttribute("s_Adr2", s_Adr2);
-			m.addAttribute("s_Adr3", s_Adr3);
-			m.addAttribute("s_Adr4", s_Adr4);
-		}
-
-		System.out.println(s_Adr);
-
-		return null;
+ 		return null;
 	}
 	@PostMapping("/updatesuccess")
 	public String updatesuccess(UserVO uvo,HttpSession session,HttpServletRequest request) {

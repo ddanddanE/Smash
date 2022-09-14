@@ -63,7 +63,7 @@
                 -
               </div>
               <div class="col-sm-3">
-                <input class="form-control" type="text" id="jumin2" name="jumin2" value="" placeholder="주민번호입력" maxlength="7" onkeyup="resi()"> 
+                <input class="form-control" type="password" id="jumin2" name="jumin2" value="" placeholder="주민번호입력" maxlength="7" onkeyup="resi()"> 
               </div>
               <input type="hidden" class="resiNum" id="resiNum"  name="user_resinum"><!-- hidden -->
           </div>
@@ -153,25 +153,25 @@
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label"> </label>
             <div class="col-sm-5">
-              <input class="form-control" type="text" id="sample7_address" name="" value="" placeholder="주소" readonly="readonly">
+              <input class="form-control" type="text" id="sample7_address" name="user_sport_address"" value="" placeholder="주소" readonly="readonly">
             </div>
           </div>
 
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label"> </label>
             <div class="col-sm-5">
-              <input class="form-control" type="text" id="sample7_detailAddress" name="" value="" placeholder="상세주소" onkeyup="sportadr()">
+              <input class="form-control" type="text" id="sample7_detailAddress" name="user_sport_detailaddress" value="" placeholder="상세주소">
             </div>
 
             <div class="col-sm-4">
-              <input class="form-control" type="text" id="sample7_extraAddress" name="" value="" placeholder="참고 항목"readonly="readonly"> 
+              <input class="form-control" type="text" id="sample7_extraAddress" name="user_sport_extraaddress" value="" placeholder="참고 항목"readonly="readonly"> 
             </div>
-			<input type="hidden" class="" id="Sport_Address" name="user_sport_address" readonly="readonly"><!-- hidden -->
+			<input type="hidden" class="" id="Sport_Address" name=" readonly="readonly"><!-- hidden -->
           </div>
 			<div id="getmap" class="form-group row">
             </div>
-            <input type="hidden" id="longitude" name="user_sport_address_x">
-            <input type="hidden" id="Latitude" name="user_sport_address_y">
+            <input type="text" id="longitude" name="user_sport_address_x">
+            <input type="text" id="Latitude" name="user_sport_address_y">
           <button class="btn btn-lg btn-primary" type="submit" onclick="return checks()">회원가입</button>
           <button class="btn btn-lg btn-primary" type="reset">취소</button>
         </form>
