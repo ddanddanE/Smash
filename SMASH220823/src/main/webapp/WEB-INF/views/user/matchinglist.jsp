@@ -198,11 +198,11 @@ font-size: 1.5em;
                 
                 
                 
-                
+                <%int i=0; %>
              <c:forEach items="${lo  }" var="bo">
              <c:if test="${bo.NOTICE_MSG_STATUS.equals('완료') }">
 					<tr class="odd gradeX">
-					<td>1<input type="hidden" value="${user.user_id }"
+					<td><%i++; %><%=i %><input type="hidden" value="${user.user_id }"
 							name="user.user_id" /> <input type="hidden"
 							value="${bo.NOTICE_MSG_NO}" name="NOTICE_MSG_NO" /> </td>
 						<c:out value="${fn:substring(title,0,20)}" />

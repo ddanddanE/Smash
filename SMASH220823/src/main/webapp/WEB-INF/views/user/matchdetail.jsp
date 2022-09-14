@@ -48,11 +48,11 @@ font-size: 1.5em;
                 </tr>
 
 				
-				
+				<%int i=0; %>
 				<c:forEach items="${lo2  }" var="bb">
 				 <c:if test="${bb.NOTICE_MSG_STATUS.equals('신청') || bb.NOTICE_MSG_STATUS.equals('거절') || bb.NOTICE_MSG_STATUS.equals('수락') }">
 					<tr class="odd gradeX">
-						<td>1</td>
+						<td><%i++; %><%=i %></td>
 						<td><c:out value="${bb.NOTICE_MSG_USER}" /></td>
 						<td><c:out value="${bb.BOARD_TITLE}" /></td>
 						<td><c:out value="${bb.NOTICE_MSG_PLACE}" /></td>
